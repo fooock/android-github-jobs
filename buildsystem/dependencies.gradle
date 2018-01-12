@@ -10,6 +10,8 @@ ext {
     okhttp3Version = "3.9.1"
     daggerVersion = "2.14.1"
     retrofitConverterVersion = "2.3.0"
+    rxJavaAndroid = "2.0.1"
+    rxJavaVersion = "2.1.8"
 
     junitVersion = "4.12"
     espressoVersion = "2.2.2"
@@ -28,7 +30,10 @@ ext {
             okhttp3             : "com.squareup.okhttp3:okhttp:${okhttp3Version}",
             dagger              : "com.google.dagger:dagger:${daggerVersion}",
             daggerCompiler      : "com.google.dagger:dagger-compiler:${daggerVersion}",
-            retrofitConverter   : "com.squareup.retrofit2:converter-gson:${retrofitConverterVersion}"
+            retrofitConverter   : "com.squareup.retrofit2:converter-gson:${retrofitConverterVersion}",
+            rxJava              : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxJavaAndroid       : "io.reactivex.rxjava2:rxandroid:${rxJavaAndroid}",
+            retrofitAdapter     : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
     ]
 
     appTest = [

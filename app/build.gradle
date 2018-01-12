@@ -4,7 +4,7 @@ apply plugin: 'com.google.gms.oss.licenses.plugin'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
-    
+
     defaultConfig {
         applicationId "com.fooock.github.jobs"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -49,7 +49,7 @@ android {
 dependencies {
     debugImplementation rootProject.ext.appLibraries.leakCanary
     debugImplementation rootProject.ext.appLibraries.stetho
-    
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation(rootProject.ext.appTest.espresso, {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -65,6 +65,9 @@ dependencies {
     implementation rootProject.ext.appLibraries.retrofitConverter
     implementation rootProject.ext.appLibraries.dagger
     annotationProcessor rootProject.ext.appLibraries.daggerCompiler
+    implementation rootProject.ext.appLibraries.rxJava
+    implementation rootProject.ext.appLibraries.rxJavaAndroid
+    implementation rootProject.ext.appLibraries.retrofitAdapter
 
     testImplementation rootProject.ext.appTest.junit
     testImplementation rootProject.ext.appTest.mockito
