@@ -5,10 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.fooock.github.jobs.di.AppComponent;
 
+import javax.inject.Inject;
+
 /**
  *
  */
 public class GithubJobsActivity extends AppCompatActivity {
+
+    @Inject Navigation mNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +20,7 @@ public class GithubJobsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         component().inject(this);
+        mNavigation.showJobsFragment(getFragmentManager());
     }
 
     /**

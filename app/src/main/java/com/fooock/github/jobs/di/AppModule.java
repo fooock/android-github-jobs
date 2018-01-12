@@ -1,6 +1,7 @@
 package com.fooock.github.jobs.di;
 
 import com.fooock.github.jobs.GithubJobsApplication;
+import com.fooock.github.jobs.Navigation;
 
 import javax.inject.Singleton;
 
@@ -23,5 +24,11 @@ public class AppModule {
     @Provides
     GithubJobsApplication providesApplication() {
         return mApplication;
+    }
+
+    @Singleton
+    @Provides
+    Navigation providesNavigation() {
+        return new Navigation();
     }
 }
