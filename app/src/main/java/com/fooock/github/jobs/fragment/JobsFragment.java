@@ -49,7 +49,14 @@ public class JobsFragment extends Fragment implements JobsView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         getActivity().setTitle(R.string.title_jobs);
+        mJobsPresenter.attach(this);
         mJobsPresenter.loadFirstPage();
+    }
+
+    @Override
+    public void onDestroy() {
+        mJobsPresenter.detach();
+        super.onDestroy();
     }
 
     private AppComponent component() {
