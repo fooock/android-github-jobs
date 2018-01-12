@@ -54,6 +54,8 @@ dependencies {
     androidTestImplementation(rootProject.ext.appTest.espresso, {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    implementation project(':domain')
+
     implementation rootProject.ext.appLibraries.supportAppCompat
     implementation rootProject.ext.appLibraries.constraintLayout
     implementation rootProject.ext.appLibraries.timber
