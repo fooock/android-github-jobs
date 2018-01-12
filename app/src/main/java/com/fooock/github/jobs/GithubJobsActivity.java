@@ -28,7 +28,7 @@ public class GithubJobsActivity extends AppCompatActivity {
     /**
      * @return The {@link AppComponent}
      */
-    private AppComponent component() {
+    public AppComponent component() {
         return application().component();
     }
 }
