@@ -3,18 +3,22 @@ package com.fooock.github.jobs;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.fooock.github.jobs.di.AppComponent;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  *
  */
 public class JobsFragment extends Fragment {
+
+    @BindView(R.id.rv_jobs) RecyclerView mJobList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +36,7 @@ public class JobsFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-
+        getActivity().setTitle(R.string.title_jobs);
     }
 
     private AppComponent component() {

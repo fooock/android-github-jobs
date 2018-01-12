@@ -33,7 +33,8 @@ ext {
             retrofitConverter   : "com.squareup.retrofit2:converter-gson:${retrofitConverterVersion}",
             rxJava              : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             rxJavaAndroid       : "io.reactivex.rxjava2:rxandroid:${rxJavaAndroid}",
-            retrofitAdapter     : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+            retrofitAdapter     : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            recyclerView        : "com.android.support:recyclerview-v7:${appCompatVersion}"
     ]
 
     appTest = [
