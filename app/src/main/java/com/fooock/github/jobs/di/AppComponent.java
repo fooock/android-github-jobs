@@ -1,7 +1,7 @@
 package com.fooock.github.jobs.di;
 
-import com.fooock.github.jobs.GithubJobsActivity;
-import com.fooock.github.jobs.JobsFragment;
+import com.fooock.github.jobs.activity.GithubJobsActivity;
+import com.fooock.github.jobs.fragment.JobsFragment;
 
 import javax.inject.Singleton;
 

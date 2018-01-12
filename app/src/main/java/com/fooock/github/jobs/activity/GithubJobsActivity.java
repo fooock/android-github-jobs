@@ -1,8 +1,11 @@
-package com.fooock.github.jobs;
+package com.fooock.github.jobs.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.fooock.github.jobs.GithubJobsApplication;
+import com.fooock.github.jobs.Navigation;
+import com.fooock.github.jobs.R;
 import com.fooock.github.jobs.di.AppComponent;
 
 import javax.inject.Inject;

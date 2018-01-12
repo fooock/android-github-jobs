@@ -1,4 +1,4 @@
-package com.fooock.github.jobs;
+package com.fooock.github.jobs.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.fooock.github.jobs.R;
+import com.fooock.github.jobs.activity.GithubJobsActivity;
 import com.fooock.github.jobs.di.AppComponent;
 
 import butterknife.BindView;
