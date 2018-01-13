@@ -55,6 +55,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation project(':domain')
+    implementation project(':data')
 
     implementation rootProject.ext.appLibraries.supportAppCompat
     implementation rootProject.ext.appLibraries.constraintLayout
