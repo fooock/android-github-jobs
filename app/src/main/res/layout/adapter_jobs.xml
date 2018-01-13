@@ -18,6 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/company_logo"
+            android:minHeight="80dp"
+            android:minWidth="80dp"
             app:layout_constraintTop_toBottomOf="@+id/txt_job_title" />
 
         <TextView
