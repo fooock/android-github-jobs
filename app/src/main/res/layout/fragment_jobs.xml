@@ -25,6 +25,9 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_jobs"
+            android:paddingTop="@dimen/padding_base"
+            android:paddingBottom="@dimen/padding_base"
+            android:clipToPadding="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
