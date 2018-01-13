@@ -12,4 +12,6 @@ import io.reactivex.Observable;
 public interface DataSource {
 
     Observable<List<JobData>> getJobs(int page);
+
+    void save(List<JobData> jobs);
 }

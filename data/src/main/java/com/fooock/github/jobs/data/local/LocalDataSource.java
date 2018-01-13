@@ -16,4 +16,9 @@ public class LocalDataSource implements DataSource {
     public Observable<List<JobData>> getJobs(int page) {
         return Observable.empty();
     }
+
+    @Override
+    public void save(List<JobData> jobs) {
+
+    }
 }
