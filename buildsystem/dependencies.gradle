@@ -38,7 +38,8 @@ ext {
             retrofitAdapter     : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
             recyclerView        : "com.android.support:recyclerview-v7:${appCompatVersion}",
             room                : "android.arch.persistence.room:runtime:${roomVersion}",
-            picasso             : "com.squareup.picasso:picasso:${picassoVersion}"
+            picasso             : "com.squareup.picasso:picasso:${picassoVersion}",
+            cardView            : "com.android.support:cardview-v7:${appCompatVersion}"
     ]
 
     appTest = [

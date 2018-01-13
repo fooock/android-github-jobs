@@ -74,6 +74,7 @@ dependencies {
     implementation rootProject.ext.appLibraries.recyclerView
     implementation rootProject.ext.appLibraries.room
     implementation rootProject.ext.appLibraries.picasso
+    implementation rootProject.ext.appLibraries.cardView
 
     testImplementation rootProject.ext.appTest.junit
     testImplementation rootProject.ext.appTest.mockito
