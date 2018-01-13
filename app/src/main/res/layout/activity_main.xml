@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="@dimen/padding_base"
+    android:paddingRight="@dimen/padding_base"
     tools:context="com.fooock.github.jobs.activity.GithubJobsActivity">
 
     <FrameLayout
