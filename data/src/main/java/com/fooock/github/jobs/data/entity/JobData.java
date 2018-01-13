@@ -1,42 +1,65 @@
 package com.fooock.github.jobs.data.entity;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  *
  */
+@Entity(tableName = "jobs")
 public class JobData {
 
+    @NonNull
+    @PrimaryKey
+    @ColumnInfo(name = "id")
     @SerializedName("id")
     private String mId;
 
+    @ColumnInfo(name = "title")
     @SerializedName("title")
     private String mTitle;
 
+    @ColumnInfo(name = "localization")
     @SerializedName("localization")
     private String mLocation;
 
+    @ColumnInfo(name = "type")
     @SerializedName("type")
     private String mType;
 
+    @ColumnInfo(name = "description")
     @SerializedName("description")
     private String mDescription;
 
+    @ColumnInfo(name = "how_to_apply")
     @SerializedName("how_to_apply")
     private String mHowToApply;
 
+    @ColumnInfo(name = "company")
     @SerializedName("company")
     private String mCompany;
 
+    @ColumnInfo(name = "company_url")
     @SerializedName("company_url")
     private String mCompanyUrl;
 
+    @ColumnInfo(name = "company_logo")
     @SerializedName("company_logo")
     private String mCompanyLogoUrl;
 
+    @ColumnInfo(name = "created_at")
     @SerializedName("created_at")
     private String mCreatedAt;
 
+    public JobData() {
+        mId = "";
+    }
+
+    @NonNull
     public String getId() {
         return mId;
     }

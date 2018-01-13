@@ -1,7 +1,12 @@
 package com.fooock.github.jobs.di;
 
+import android.arch.persistence.room.Room;
+import android.content.Context;
+
 import com.fooock.github.jobs.GithubJobsApplication;
 import com.fooock.github.jobs.data.DataSource;
+import com.fooock.github.jobs.data.local.AppDatabase;
+import com.fooock.github.jobs.data.local.JobDao;
 import com.fooock.github.jobs.data.local.LocalDataSource;
 import com.fooock.github.jobs.data.remote.JobsApiService;
 import com.fooock.github.jobs.data.repository.DefaultRepository;
@@ -61,13 +66,25 @@ public class IoModule {
 
     @Singleton
     @Provides
-    DataSource providesLocalDataSource() {
-        return new LocalDataSource();
+    DataSource providesLocalDataSource(JobDao jobDao) {
+        return new LocalDataSource(jobDao);
     }
 
     @Singleton
     @Provides
     Repository providesRepository(JobsApiService apiService, DataSource localDataSource) {
         return new DefaultRepository(apiService, localDataSource);
+    }
+
+    @Singleton
+    @Provides
+    AppDatabase providesAppDatabase(Context context) {
+        return Room.databaseBuilder(context, AppDatabase.class, "jobs-db").build();
+    }
+
+    @Singleton
+    @Provides
+    JobDao providesJobDao(AppDatabase database) {
+        return database.getJobDao();
     }
 }

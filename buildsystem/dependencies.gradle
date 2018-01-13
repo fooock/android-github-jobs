@@ -12,6 +12,7 @@ ext {
     retrofitConverterVersion = "2.3.0"
     rxJavaAndroid = "2.0.1"
     rxJavaVersion = "2.1.8"
+    roomVersion = "1.0.0"
 
     junitVersion = "4.12"
     espressoVersion = "2.2.2"
@@ -34,7 +35,8 @@ ext {
             rxJava              : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             rxJavaAndroid       : "io.reactivex.rxjava2:rxandroid:${rxJavaAndroid}",
             retrofitAdapter     : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
-            recyclerView        : "com.android.support:recyclerview-v7:${appCompatVersion}"
+            recyclerView        : "com.android.support:recyclerview-v7:${appCompatVersion}",
+            room                : "android.arch.persistence.room:runtime:${roomVersion}"
     ]
 
     appTest = [
@@ -59,6 +61,8 @@ ext {
             rxJava           : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             retrofit         : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofitConverter: "com.squareup.retrofit2:converter-gson:${retrofitConverterVersion}",
+            room             : "android.arch.persistence.room:runtime:${roomVersion}",
+            roomCompiler     : "android.arch.persistence.room:compiler:${roomVersion}"
     ]
 
     dataTest = [

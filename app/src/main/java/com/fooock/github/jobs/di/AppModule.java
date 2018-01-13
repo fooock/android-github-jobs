@@ -1,5 +1,6 @@
 package com.fooock.github.jobs.di;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.fooock.github.jobs.GithubJobsApplication;
@@ -59,6 +60,12 @@ public class AppModule {
     @Provides
     ThreadExecutor providesThreadExecutor() {
         return new DefaultExecutor();
+    }
+
+    @Singleton
+    @Provides
+    Context providesContext() {
+        return mApplication.getApplicationContext();
     }
 
     /**

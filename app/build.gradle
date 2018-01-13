@@ -72,6 +72,7 @@ dependencies {
     implementation rootProject.ext.appLibraries.rxJavaAndroid
     implementation rootProject.ext.appLibraries.retrofitAdapter
     implementation rootProject.ext.appLibraries.recyclerView
+    implementation rootProject.ext.appLibraries.room
 
     testImplementation rootProject.ext.appTest.junit
     testImplementation rootProject.ext.appTest.mockito

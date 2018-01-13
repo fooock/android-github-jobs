@@ -30,6 +30,8 @@ dependencies {
     implementation rootProject.ext.dataLibraries.rxJava
     implementation rootProject.ext.dataLibraries.retrofit
     implementation rootProject.ext.dataLibraries.retrofitConverter
+    implementation rootProject.ext.dataLibraries.room
+    annotationProcessor rootProject.ext.dataLibraries.roomCompiler
 
     testImplementation rootProject.ext.dataTest.junit
     testImplementation rootProject.ext.dataTest.mockito
