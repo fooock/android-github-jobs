@@ -3,6 +3,7 @@ package com.fooock.github.jobs.presenter;
 import com.fooock.github.jobs.domain.ObserverAdapter;
 import com.fooock.github.jobs.domain.interactor.GetJobs;
 import com.fooock.github.jobs.domain.model.JobOffer;
+import com.fooock.github.jobs.presenter.mapper.JobOfferMapper;
 import com.fooock.github.jobs.presenter.view.JobsView;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class JobsPresenter extends Presenter<JobsView> {
     private static final int JOBS_FIRST_PAGE = 1;
 
     private final GetJobs mGetJobs;
+    private final JobOfferMapper mJobOfferMapper = new JobOfferMapper();
 
     @Inject
     public JobsPresenter(GetJobs getJobs) {
@@ -32,7 +34,10 @@ public class JobsPresenter extends Presenter<JobsView> {
         mGetJobs.execute(new ObserverAdapter<List<JobOffer>>() {
             @Override
             public void onNext(List<JobOffer> jobOffers) {
-                if (isAttached()) getView().loading(false);
+                if (isAttached()) {
+                    getView().loading(false);
+                    getView().onJobsLoaded(mJobOfferMapper.map(jobOffers));
+                }
             }
 
             @Override
