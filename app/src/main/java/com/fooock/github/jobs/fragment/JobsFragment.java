@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.fooock.github.jobs.JobsAdapter;
 import com.fooock.github.jobs.R;
 import com.fooock.github.jobs.activity.GithubJobsActivity;
 import com.fooock.github.jobs.di.AppComponent;
@@ -70,8 +71,10 @@ public class JobsFragment extends Fragment implements JobsView, SwipeRefreshLayo
 
     @Override
     public void onJobsLoaded(List<JobViewModel> jobs) {
-        mRefreshLayout.setRefreshing(false);
         Timber.d("Found %s jobs", jobs.size());
+
+        mRefreshLayout.setRefreshing(false);
+        mJobList.setAdapter(new JobsAdapter(jobs, getContext()));
     }
 
     @Override

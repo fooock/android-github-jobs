@@ -13,6 +13,7 @@ ext {
     rxJavaAndroid = "2.0.1"
     rxJavaVersion = "2.1.8"
     roomVersion = "1.0.0"
+    picassoVersion = "2.5.2"
 
     junitVersion = "4.12"
     espressoVersion = "2.2.2"
@@ -36,7 +37,8 @@ ext {
             rxJavaAndroid       : "io.reactivex.rxjava2:rxandroid:${rxJavaAndroid}",
             retrofitAdapter     : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
             recyclerView        : "com.android.support:recyclerview-v7:${appCompatVersion}",
-            room                : "android.arch.persistence.room:runtime:${roomVersion}"
+            room                : "android.arch.persistence.room:runtime:${roomVersion}",
+            picasso             : "com.squareup.picasso:picasso:${picassoVersion}"
     ]
 
     appTest = [

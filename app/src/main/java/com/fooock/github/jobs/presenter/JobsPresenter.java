@@ -15,7 +15,7 @@ import javax.inject.Inject;
  */
 public class JobsPresenter extends Presenter<JobsView> {
 
-    private static final int JOBS_FIRST_PAGE = 1;
+    private static final int JOBS_FIRST_PAGE = 0;
 
     private final GetJobs mGetJobs;
     private final JobOfferMapper mJobOfferMapper = new JobOfferMapper();

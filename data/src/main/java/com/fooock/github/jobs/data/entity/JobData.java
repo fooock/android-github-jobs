@@ -23,8 +23,8 @@ public class JobData {
     @SerializedName("title")
     private String mTitle;
 
-    @ColumnInfo(name = "localization")
-    @SerializedName("localization")
+    @ColumnInfo(name = "location")
+    @SerializedName("location")
     private String mLocation;
 
     @ColumnInfo(name = "type")

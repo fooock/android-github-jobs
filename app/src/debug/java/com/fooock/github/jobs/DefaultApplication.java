@@ -4,6 +4,7 @@ import android.os.StrictMode;
 
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
+import com.squareup.picasso.Picasso;
 
 import timber.log.Timber;
 
@@ -14,6 +15,9 @@ public class DefaultApplication extends GithubJobsApplication {
 
     @Override
     void initialize() {
+        // enable debug indicators for Picasso
+        Picasso.with(this).setIndicatorsEnabled(BuildConfig.DEBUG);
+
         // this does not enable network inspection!
         Stetho.initializeWithDefaults(this);
 
