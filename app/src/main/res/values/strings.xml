@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Github Jobs</string>
     <string name="title_jobs">Github Jobs</string>
+    <string name="company_logo">Company logo</string>
 </resources>

@@ -22,6 +22,9 @@ import butterknife.ButterKnife;
  */
 public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
 
+    private static final int TARGET_WIDTH = 200;
+    private static final int TARGET_HEIGHT = 200;
+
     private final Context mContext;
     private final List<JobViewModel> mJobs;
 
@@ -48,6 +51,8 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
 
         Picasso.with(mContext)
                 .load(viewModel.getCompany().getLogoUrl())
+                .resize(TARGET_WIDTH, TARGET_HEIGHT)
+                .centerInside()
                 .into(holder.mImgCompanyUrl);
     }
 
