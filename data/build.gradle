@@ -29,6 +29,7 @@ dependencies {
     implementation rootProject.ext.dataLibraries.dagger
     implementation rootProject.ext.dataLibraries.rxJava
     implementation rootProject.ext.dataLibraries.retrofit
+    implementation rootProject.ext.dataLibraries.retrofitConverter
 
     testImplementation rootProject.ext.dataTest.junit
     testImplementation rootProject.ext.dataTest.mockito
