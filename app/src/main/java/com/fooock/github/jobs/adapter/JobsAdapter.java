@@ -22,8 +22,8 @@ import butterknife.ButterKnife;
  */
 public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
 
-    private static final int TARGET_WIDTH = 200;
-    private static final int TARGET_HEIGHT = 200;
+    private static final int TARGET_WIDTH = 120;
+    private static final int TARGET_HEIGHT = 120;
 
     private final Context mContext;
     private final List<JobViewModel> mJobs;
@@ -35,7 +35,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.adapter_jobs, parent, false);
         return new Holder(view);
     }

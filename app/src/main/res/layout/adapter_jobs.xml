@@ -3,8 +3,8 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardBackgroundColor="#ffffff"
     android:layout_marginTop="2dp"
+    card_view:cardBackgroundColor="#ffffff"
     card_view:cardCornerRadius="4dp"
     card_view:cardPreventCornerOverlap="true"
     card_view:cardUseCompatPadding="true"
@@ -18,26 +18,31 @@
             android:id="@+id/img_company"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/company_logo"
-            android:minHeight="80dp"
-            android:minWidth="80dp"
+            android:minHeight="65dp"
+            android:minWidth="65dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_job_title" />
+            app:layout_constraintTop_toTopOf="@+id/divider_top" />
 
         <TextView
             android:id="@+id/txt_created_at"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:maxLines="1"
             android:text="28 jun 2017"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/img_company"
             app:layout_constraintTop_toBottomOf="@+id/txt_location" />
 
@@ -52,6 +57,7 @@
             android:maxLines="1"
             android:text="location"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/img_company"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -63,9 +69,9 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="asdasdasda"
-            android:maxLines="2"
             android:ellipsize="end"
+            android:maxLines="2"
+            android:text="asdasdasda"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -79,16 +85,17 @@
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/img_company"
-            app:layout_constraintTop_toBottomOf="@+id/txt_job_title">
+            app:layout_constraintTop_toTopOf="@+id/divider_top">
 
             <TextView
                 android:id="@+id/txt_company_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="company name"
-                android:maxLines="1"
                 android:ellipsize="end"
+                android:maxLines="1"
+                android:text="company name"
                 app:layout_constraintStart_toEndOf="@+id/img_company"
                 app:layout_constraintTop_toBottomOf="@+id/txt_job_title" />
 
@@ -106,14 +113,26 @@
                 android:id="@+id/txt_job_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="asfdsfsdf"
-                android:maxLines="1"
                 android:ellipsize="end"
+                android:maxLines="1"
+                android:text="asfdsfsdf"
                 app:layout_constraintBottom_toTopOf="@+id/txt_location"
                 app:layout_constraintStart_toEndOf="@+id/txt_separator"
                 app:layout_constraintTop_toBottomOf="@+id/txt_job_title" />
 
         </LinearLayout>
+
+        <View
+            android:id="@+id/divider_top"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/gray_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_job_title" />
 
     </android.support.constraint.ConstraintLayout>
 
