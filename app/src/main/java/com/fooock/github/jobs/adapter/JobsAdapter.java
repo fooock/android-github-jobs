@@ -1,4 +1,4 @@
-package com.fooock.github.jobs;
+package com.fooock.github.jobs.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fooock.github.jobs.R;
 import com.fooock.github.jobs.model.JobViewModel;
 import com.squareup.picasso.Picasso;
 

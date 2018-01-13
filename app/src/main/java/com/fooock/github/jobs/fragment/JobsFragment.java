@@ -10,9 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.fooock.github.jobs.JobsAdapter;
 import com.fooock.github.jobs.R;
 import com.fooock.github.jobs.activity.GithubJobsActivity;
+import com.fooock.github.jobs.adapter.JobsAdapter;
 import com.fooock.github.jobs.di.AppComponent;
 import com.fooock.github.jobs.model.JobViewModel;
 import com.fooock.github.jobs.presenter.JobsPresenter;
