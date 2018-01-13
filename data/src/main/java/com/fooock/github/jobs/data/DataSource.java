@@ -1,15 +1,15 @@
 package com.fooock.github.jobs.data;
 
-import android.database.Observable;
-
 import com.fooock.github.jobs.data.entity.JobData;
 
 import java.util.List;
+
+import io.reactivex.Observable;
 
 /**
  * Base interface for all data sources
  */
 public interface DataSource {
 
-    Observable<List<JobData>> getJobs();
+    Observable<List<JobData>> getJobs(int page);
 }

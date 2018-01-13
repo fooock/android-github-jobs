@@ -24,6 +24,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(':domain')
+
     implementation rootProject.ext.dataLibraries.dagger
     implementation rootProject.ext.dataLibraries.rxJava
     implementation rootProject.ext.dataLibraries.retrofit

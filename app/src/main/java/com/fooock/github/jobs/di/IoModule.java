@@ -1,7 +1,11 @@
 package com.fooock.github.jobs.di;
 
 import com.fooock.github.jobs.GithubJobsApplication;
+import com.fooock.github.jobs.data.DataSource;
+import com.fooock.github.jobs.data.local.LocalDataSource;
 import com.fooock.github.jobs.data.remote.JobsApiService;
+import com.fooock.github.jobs.data.repository.DefaultRepository;
+import com.fooock.github.jobs.domain.Repository;
 
 import javax.inject.Singleton;
 
@@ -53,5 +57,17 @@ public class IoModule {
     @Provides
     JobsApiService providesJobApiService(Retrofit retrofit) {
         return retrofit.create(JobsApiService.class);
+    }
+
+    @Singleton
+    @Provides
+    DataSource providesLocalDataSource() {
+        return new LocalDataSource();
+    }
+
+    @Singleton
+    @Provides
+    Repository providesRepository(JobsApiService apiService, DataSource localDataSource) {
+        return new DefaultRepository(apiService, localDataSource);
     }
 }
