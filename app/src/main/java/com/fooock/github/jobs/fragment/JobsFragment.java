@@ -3,6 +3,7 @@ package com.fooock.github.jobs.fragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,10 +28,11 @@ import timber.log.Timber;
 /**
  *
  */
-public class JobsFragment extends Fragment implements JobsView {
+public class JobsFragment extends Fragment implements JobsView, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.rv_jobs) RecyclerView mJobList;
     @BindView(R.id.pb_loader) ProgressBar mProgressBar;
+    @BindView(R.id.swipe_refresh) SwipeRefreshLayout mRefreshLayout;
 
     @Inject JobsPresenter mJobsPresenter;
 
@@ -51,6 +53,7 @@ public class JobsFragment extends Fragment implements JobsView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         getActivity().setTitle(R.string.title_jobs);
+        mRefreshLayout.setOnRefreshListener(this);
         mJobsPresenter.attach(this);
         mJobsPresenter.loadFirstPage();
     }
@@ -67,6 +70,7 @@ public class JobsFragment extends Fragment implements JobsView {
 
     @Override
     public void onJobsLoaded(List<JobViewModel> jobs) {
+        mRefreshLayout.setRefreshing(false);
         Timber.d("Found %s jobs", jobs.size());
     }
 
@@ -79,5 +83,11 @@ public class JobsFragment extends Fragment implements JobsView {
     public void loading(boolean isLoading) {
         mProgressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
         mJobList.setVisibility(isLoading ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void onRefresh() {
+        Timber.d("Refresh jobs");
+        mJobsPresenter.loadFirstPage();
     }
 }
