@@ -14,4 +14,6 @@ public interface JobsView {
     void onJobsLoaded(List<JobViewModel> jobs);
 
     void onError(@StringRes int message, Throwable error);
+
+    void loading(boolean isLoading);
 }

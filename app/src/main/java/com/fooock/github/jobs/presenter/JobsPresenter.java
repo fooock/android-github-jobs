@@ -28,15 +28,16 @@ public class JobsPresenter extends Presenter<JobsView> {
     }
 
     private void loadJobs(int page) {
+        if (isAttached()) getView().loading(true);
         mGetJobs.execute(new ObserverAdapter<List<JobOffer>>() {
             @Override
             public void onNext(List<JobOffer> jobOffers) {
-
+                if (isAttached()) getView().loading(false);
             }
 
             @Override
             public void onError(Throwable e) {
-
+                if (isAttached()) getView().loading(false);
             }
         }, page);
     }

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.fooock.github.jobs.R;
 import com.fooock.github.jobs.activity.GithubJobsActivity;
@@ -29,6 +30,7 @@ import timber.log.Timber;
 public class JobsFragment extends Fragment implements JobsView {
 
     @BindView(R.id.rv_jobs) RecyclerView mJobList;
+    @BindView(R.id.pb_loader) ProgressBar mProgressBar;
 
     @Inject JobsPresenter mJobsPresenter;
 
@@ -71,5 +73,11 @@ public class JobsFragment extends Fragment implements JobsView {
     @Override
     public void onError(int message, Throwable error) {
         Timber.e(error);
+    }
+
+    @Override
+    public void loading(boolean isLoading) {
+        mProgressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+        mJobList.setVisibility(isLoading ? View.GONE : View.VISIBLE);
     }
 }
