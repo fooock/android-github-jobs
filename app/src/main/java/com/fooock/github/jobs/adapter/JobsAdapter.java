@@ -51,7 +51,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
 
         Picasso.with(mContext)
                 .load(viewModel.getCompany().getLogoUrl())
-                .placeholder(R.drawable.ic_warning_24dp)
+                .placeholder(R.drawable.ic_account_circle_24dp)
                 .resize(TARGET_WIDTH, TARGET_HEIGHT)
                 .centerInside()
                 .into(holder.mImgCompanyUrl);
