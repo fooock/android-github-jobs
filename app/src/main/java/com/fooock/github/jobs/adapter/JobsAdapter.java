@@ -18,6 +18,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 /**
  *
@@ -65,6 +66,9 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
 
     public void update(List<JobViewModel> jobs) {
         mJobs.addAll(jobs);
+        notifyItemRangeInserted(mJobs.size(), jobs.size());
+
+        Timber.d("Total jobs %s", mJobs.size());
     }
 
     /**
