@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import com.fooock.github.jobs.R;
 import com.fooock.github.jobs.model.JobViewModel;
+import com.fooock.github.jobs.util.DateUtil;
 
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -40,7 +42,8 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
         JobViewModel viewModel = mJobs.get(position);
         holder.mTxtJobTitle.setText(viewModel.getTitle());
         holder.mTxtJobType.setText(viewModel.getType());
-        holder.mTxtCreated.setText(viewModel.getDate().toString());
+        holder.mTxtCreated.setText(DateUtil.elapsedTime(
+                viewModel.getDate(), new Date(System.currentTimeMillis())));
         holder.mTxtCompanyName.setText(viewModel.getCompany().getName());
         holder.mTxtLocation.setText(viewModel.getLocation());
     }

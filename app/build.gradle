@@ -73,8 +73,8 @@ dependencies {
     implementation rootProject.ext.appLibraries.retrofitAdapter
     implementation rootProject.ext.appLibraries.recyclerView
     implementation rootProject.ext.appLibraries.room
-    implementation rootProject.ext.appLibraries.picasso
     implementation rootProject.ext.appLibraries.cardView
+    implementation rootProject.ext.appLibraries.jodaTime
 
     testImplementation rootProject.ext.appTest.junit
     testImplementation rootProject.ext.appTest.mockito

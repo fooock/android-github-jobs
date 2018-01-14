@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:color="@android:color/white"
+    android:background="#eef6fc"
     tools:context="com.fooock.github.jobs.activity.GithubJobsActivity">
 
     <FrameLayout
