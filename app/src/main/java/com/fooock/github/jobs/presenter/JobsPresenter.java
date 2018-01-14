@@ -29,7 +29,7 @@ public class JobsPresenter extends Presenter<JobsView> {
         loadJobs(JOBS_FIRST_PAGE);
     }
 
-    private void loadJobs(int page) {
+    public void loadJobs(int page) {
         if (isAttached()) getView().loading(true);
         mGetJobs.execute(new ObserverAdapter<List<JobOffer>>() {
             @Override

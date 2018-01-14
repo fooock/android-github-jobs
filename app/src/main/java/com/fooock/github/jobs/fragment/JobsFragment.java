@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import com.fooock.github.jobs.R;
 import com.fooock.github.jobs.activity.GithubJobsActivity;
 import com.fooock.github.jobs.adapter.JobsAdapter;
+import com.fooock.github.jobs.adapter.listener.EndlessScrollListener;
 import com.fooock.github.jobs.di.AppComponent;
 import com.fooock.github.jobs.model.JobViewModel;
 import com.fooock.github.jobs.presenter.JobsPresenter;
@@ -54,6 +55,13 @@ public class JobsFragment extends Fragment implements JobsView, SwipeRefreshLayo
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         getActivity().setTitle(R.string.title_jobs);
+        mJobList.addOnScrollListener(new EndlessScrollListener() {
+            @Override
+            public void onUpdateMore(int page) {
+                Timber.d("Get results for page %s", page);
+                mJobsPresenter.loadJobs(page);
+            }
+        });
         mRefreshLayout.setOnRefreshListener(this);
         mJobsPresenter.attach(this);
         mJobsPresenter.loadFirstPage();
