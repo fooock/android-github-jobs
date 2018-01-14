@@ -38,6 +38,8 @@ public class JobsFragment extends Fragment implements JobsView, SwipeRefreshLayo
 
     @Inject JobsPresenter mJobsPresenter;
 
+    private JobsAdapter mJobsAdapter;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,8 @@ public class JobsFragment extends Fragment implements JobsView, SwipeRefreshLayo
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         getActivity().setTitle(R.string.title_jobs);
+        mJobsAdapter = new JobsAdapter(getContext());
+        mJobList.setAdapter(mJobsAdapter);
         mJobList.addOnScrollListener(new EndlessScrollListener() {
             @Override
             public void onUpdateMore(int page) {
@@ -82,7 +86,7 @@ public class JobsFragment extends Fragment implements JobsView, SwipeRefreshLayo
         Timber.d("Found %s jobs", jobs.size());
 
         mRefreshLayout.setRefreshing(false);
-        mJobList.setAdapter(new JobsAdapter(jobs, getContext()));
+        mJobsAdapter.update(jobs);
     }
 
     @Override

@@ -11,6 +11,7 @@ import com.fooock.github.jobs.R;
 import com.fooock.github.jobs.model.JobViewModel;
 import com.fooock.github.jobs.util.DateUtil;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
     private final Context mContext;
     private final List<JobViewModel> mJobs;
 
-    public JobsAdapter(List<JobViewModel> jobs, Context context) {
-        mJobs = jobs;
+    public JobsAdapter(Context context) {
+        mJobs = new ArrayList<>();
         mContext = context;
     }
 
@@ -51,6 +52,10 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
     @Override
     public int getItemCount() {
         return mJobs.size();
+    }
+
+    public void update(List<JobViewModel> jobs) {
+        mJobs.addAll(jobs);
     }
 
     /**
