@@ -2,7 +2,7 @@ apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
-def isJava = plugins.hasPlugin('java')
+def isJava = plugins.hasPlugin('java') || project.name == 'domain'
 
 checkstyle {
     toolVersion '7.8.2'

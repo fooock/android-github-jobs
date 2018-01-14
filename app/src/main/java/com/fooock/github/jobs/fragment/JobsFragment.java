@@ -58,7 +58,7 @@ public class JobsFragment extends Fragment implements JobsView,
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         getActivity().setTitle(R.string.title_jobs);
-        mJobsAdapter = new JobsAdapter(getContext(), this);
+        mJobsAdapter = new JobsAdapter(getActivity(), this);
         mJobList.setAdapter(mJobsAdapter);
         mJobList.addOnScrollListener(new EndlessScrollListener() {
             @Override
