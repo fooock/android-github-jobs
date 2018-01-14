@@ -23,6 +23,8 @@ public class GithubJobsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         component().inject(this);
+
+        if (savedInstanceState != null) return;
         mNavigation.showJobsFragment(getFragmentManager());
     }
 

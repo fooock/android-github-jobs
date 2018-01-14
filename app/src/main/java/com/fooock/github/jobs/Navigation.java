@@ -9,9 +9,14 @@ import com.fooock.github.jobs.fragment.JobsFragment;
  */
 public class Navigation {
 
+    private static final String JOB_FRAGMENT_TAG = "JobFragmentTag";
+
     public void showJobsFragment(FragmentManager manager) {
-        manager.beginTransaction()
-                .add(R.id.container, new JobsFragment())
-                .commit();
+        JobsFragment fragment = (JobsFragment) manager.findFragmentByTag(JOB_FRAGMENT_TAG);
+        if (fragment == null) {
+            manager.beginTransaction()
+                    .add(R.id.container, new JobsFragment(), JOB_FRAGMENT_TAG)
+                    .commit();
+        }
     }
 }

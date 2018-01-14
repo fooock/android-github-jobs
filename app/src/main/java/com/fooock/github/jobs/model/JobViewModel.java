@@ -45,6 +45,7 @@ public class JobViewModel implements Parcelable {
         mLocation = in.readString();
         mType = in.readString();
         mCompany = in.readParcelable(CompanyViewModel.class.getClassLoader());
+        mDate = new Date(in.readString());
     }
 
     public String getId() {
@@ -83,5 +84,6 @@ public class JobViewModel implements Parcelable {
         dest.writeString(mLocation);
         dest.writeString(mType);
         dest.writeParcelable(mCompany, flags);
+        dest.writeString(mDate.toString());
     }
 }
