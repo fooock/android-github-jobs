@@ -19,10 +19,10 @@ public class JobOfferMapper implements Mapper<List<JobOffer>, List<JobViewModel>
         for (JobOffer offer : from) {
 
             CompanyViewModel company = new CompanyViewModel(
-                    offer.getCompany().getName(), offer.getCompany().getUrl(), offer.getCompany().getLogoUrl());
+                    offer.getCompany().getName().trim(), offer.getCompany().getUrl(), offer.getCompany().getLogoUrl());
 
-            jobs.add(new JobViewModel(offer.getId(), offer.getTitle(), offer.getLocation(),
-                    offer.getType(), company, offer.getCreatedAt()));
+            jobs.add(new JobViewModel(offer.getId(), offer.getTitle().trim(), offer.getLocation().trim(),
+                    offer.getType().trim(), company, offer.getCreatedAt()));
         }
         return jobs;
     }

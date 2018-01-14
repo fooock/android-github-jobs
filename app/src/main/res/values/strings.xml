@@ -3,4 +3,5 @@
     <string name="title_jobs">Github Jobs</string>
     <string name="company_logo">Company logo</string>
     <string name="separator">/</string>
+    <string name="more">MORE...</string>
 </resources>

@@ -3,8 +3,8 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="2dp"
-    card_view:cardBackgroundColor="#ffffff"
+    android:layout_marginBottom="4dp"
+    card_view:cardBackgroundColor="@color/card_background"
     card_view:cardCornerRadius="4dp"
     card_view:cardPreventCornerOverlap="false"
     card_view:cardUseCompatPadding="true"
@@ -13,21 +13,6 @@
     <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/img_company"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/company_logo"
-            android:minHeight="65dp"
-            android:minWidth="65dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/divider_top" />
 
         <TextView
             android:id="@+id/txt_created_at"
@@ -39,11 +24,12 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="28 jun 2017"
+            android:text="Published 6 hours ago"
+            android:textColor="@color/textColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/img_company"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_location" />
 
         <TextView
@@ -55,10 +41,11 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="location"
+            android:text="A Coruña"
+            android:textColor="@color/textColorDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/img_company"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <TextView
@@ -66,12 +53,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="asdasdasda"
+            android:text="Senior Android developer"
+            android:textColor="@color/titleColor"
+            android:textSize="21sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -86,7 +74,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/img_company"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/divider_top">
 
             <TextView
@@ -95,7 +83,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="company name"
+                android:text="fooock"
+                android:textColor="@color/textColor"
                 app:layout_constraintStart_toEndOf="@+id/img_company"
                 app:layout_constraintTop_toBottomOf="@+id/txt_job_title" />
 
@@ -106,6 +95,8 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:text="@string/separator"
+                android:textColor="@color/separatorColor"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/txt_company_name"
                 app:layout_constraintTop_toBottomOf="@+id/txt_job_title" />
 
@@ -115,7 +106,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="asfdsfsdf"
+                android:text="Full time"
+                android:textColor="@color/textColor"
                 app:layout_constraintBottom_toTopOf="@+id/txt_location"
                 app:layout_constraintStart_toEndOf="@+id/txt_separator"
                 app:layout_constraintTop_toBottomOf="@+id/txt_job_title" />
