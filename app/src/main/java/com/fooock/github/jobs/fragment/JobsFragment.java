@@ -30,7 +30,8 @@ import timber.log.Timber;
 /**
  *
  */
-public class JobsFragment extends Fragment implements JobsView, SwipeRefreshLayout.OnRefreshListener {
+public class JobsFragment extends Fragment implements JobsView,
+        SwipeRefreshLayout.OnRefreshListener, JobsAdapter.SelectedJobListener {
 
     @BindView(R.id.rv_jobs) RecyclerView mJobList;
     @BindView(R.id.pb_loader) ProgressBar mProgressBar;
@@ -57,7 +58,7 @@ public class JobsFragment extends Fragment implements JobsView, SwipeRefreshLayo
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         getActivity().setTitle(R.string.title_jobs);
-        mJobsAdapter = new JobsAdapter(getContext());
+        mJobsAdapter = new JobsAdapter(getContext(), this);
         mJobList.setAdapter(mJobsAdapter);
         mJobList.addOnScrollListener(new EndlessScrollListener() {
             @Override
@@ -104,5 +105,10 @@ public class JobsFragment extends Fragment implements JobsView, SwipeRefreshLayo
     public void onRefresh() {
         Timber.d("Refresh jobs");
         mJobsPresenter.loadFirstPage();
+    }
+
+    @Override
+    public void onSelectedJob(String jobId) {
+        Timber.d("Get detail for %s", jobId);
     }
 }

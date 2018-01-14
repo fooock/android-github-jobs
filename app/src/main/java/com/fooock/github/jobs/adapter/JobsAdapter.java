@@ -1,6 +1,7 @@
 package com.fooock.github.jobs.adapter;
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,12 +24,14 @@ import butterknife.ButterKnife;
  */
 public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
 
+    private final SelectedJobListener mJobListener;
     private final Context mContext;
     private final List<JobViewModel> mJobs;
 
-    public JobsAdapter(Context context) {
+    public JobsAdapter(Context context, SelectedJobListener listener) {
         mJobs = new ArrayList<>();
         mContext = context;
+        mJobListener = listener;
     }
 
     @Override
@@ -40,13 +43,19 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        JobViewModel viewModel = mJobs.get(position);
+        final JobViewModel viewModel = mJobs.get(position);
         holder.mTxtJobTitle.setText(viewModel.getTitle());
         holder.mTxtJobType.setText(viewModel.getType());
         holder.mTxtCreated.setText(DateUtil.elapsedTime(
                 viewModel.getDate(), new Date(System.currentTimeMillis())));
         holder.mTxtCompanyName.setText(viewModel.getCompany().getName());
         holder.mTxtLocation.setText(viewModel.getLocation());
+        holder.mLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mJobListener.onSelectedJob(viewModel.getId());
+            }
+        });
     }
 
     @Override
@@ -63,6 +72,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
      */
     static class Holder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.job_base_layout) ConstraintLayout mLayout;
         @BindView(R.id.txt_job_title) TextView mTxtJobTitle;
         @BindView(R.id.txt_job_type) TextView mTxtJobType;
         @BindView(R.id.txt_created_at) TextView mTxtCreated;
@@ -73,5 +83,9 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public interface SelectedJobListener {
+        void onSelectedJob(String jobId);
     }
 }

@@ -4,4 +4,9 @@
     <string name="company_logo">Company logo</string>
     <string name="separator">/</string>
     <string name="more">MORE...</string>
+    <string name="fake_text_created_at">Published 6 hours ago</string>
+    <string name="fake_text_location">A Coruna</string>
+    <string name="fake_text_job_title">Senior Android developer</string>
+    <string name="fakse_text_company">fooock</string>
+    <string name="fake_text_job_type">Full time</string>
 </resources>
