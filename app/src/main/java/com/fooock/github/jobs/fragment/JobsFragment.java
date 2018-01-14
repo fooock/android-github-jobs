@@ -73,9 +73,10 @@ public class JobsFragment extends Fragment implements JobsView,
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroyView() {
+        mJobsAdapter.clear();
         mJobsPresenter.detach();
-        super.onDestroy();
+        super.onDestroyView();
     }
 
     private AppComponent component() {

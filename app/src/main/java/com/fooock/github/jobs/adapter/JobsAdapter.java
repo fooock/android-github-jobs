@@ -31,7 +31,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
 
     public JobsAdapter(Context context, SelectedJobListener listener) {
         mJobs = new ArrayList<>();
-        mContext = context;
+        mContext = context.getApplicationContext();
         mJobListener = listener;
     }
 
@@ -69,6 +69,10 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
         notifyItemRangeInserted(mJobs.size(), jobs.size());
 
         Timber.d("Total jobs %s", mJobs.size());
+    }
+
+    public void clear() {
+        mJobs.clear();
     }
 
     /**
