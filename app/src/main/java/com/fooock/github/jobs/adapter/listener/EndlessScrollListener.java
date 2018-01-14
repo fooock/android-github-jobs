@@ -14,10 +14,10 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
     private static final int CURRENT_PAGE = 0;
     private static final int VISIBLE_THRESHOLD = 1;
 
-    private boolean loading = true;
+    private boolean mLoading = true;
 
-    private int prevTotal = 0;
-    private int actualPage = CURRENT_PAGE;
+    private int mPrevTotal = 0;
+    private int mCurrentPage = CURRENT_PAGE;
 
     @Override
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -30,18 +30,18 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
         final int itemCount = layoutManager.getItemCount();
         final int visibleItemPosition = layoutManager.findFirstVisibleItemPosition();
 
-        if (loading) {
-            if (itemCount > prevTotal) {
-                loading = false;
-                prevTotal = itemCount;
+        if (mLoading) {
+            if (itemCount > mPrevTotal) {
+                mLoading = false;
+                mPrevTotal = itemCount;
             }
         }
 
         final int lastElements = itemCount - childCount;
-        if (!loading && lastElements <= (visibleItemPosition + VISIBLE_THRESHOLD)) {
-            actualPage += 1;
-            onUpdateMore(actualPage);
-            loading = true;
+        if (!mLoading && lastElements <= (visibleItemPosition + VISIBLE_THRESHOLD)) {
+            mCurrentPage += 1;
+            onUpdateMore(mCurrentPage);
+            mLoading = true;
         }
     }
 

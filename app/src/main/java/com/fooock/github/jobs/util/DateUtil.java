@@ -8,7 +8,10 @@ import java.util.Date;
 /**
  *
  */
-public class DateUtil {
+public final class DateUtil {
+
+    private DateUtil() {
+    }
 
     public static String elapsedTime(Date from, Date to) {
         Interval interval = new Interval(from.getTime(), to.getTime());

@@ -33,7 +33,7 @@ subprojects {
     apply from: "$rootProject.projectDir/quality/quality.gradle"
 
     afterEvaluate {
-        check.dependsOn 'checkstyle', 'findbugs', 'pmd', 'lint'
+        check.dependsOn 'checkstyle', 'findbugs', 'pmd'
    }
 }
 
