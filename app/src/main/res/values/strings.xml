@@ -10,4 +10,7 @@
     <string name="fakse_text_company">fooock</string>
     <string name="fake_text_job_type">Full time</string>
     <string name="settings">Settings</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="nav_header_hello">Hello!</string>
 </resources>
