@@ -9,4 +9,5 @@
     <color name="textColor">#5C6BC0</color>
     <color name="textColorDark">#1A237E</color>
     <color name="separatorColor">#1A237E</color>
+    <color name="main_background">#eef6fc</color>
 </resources>

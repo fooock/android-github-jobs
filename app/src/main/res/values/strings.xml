@@ -9,4 +9,5 @@
     <string name="fake_text_job_title">Senior Android developer</string>
     <string name="fakse_text_company">fooock</string>
     <string name="fake_text_job_type">Full time</string>
+    <string name="settings">Settings</string>
 </resources>

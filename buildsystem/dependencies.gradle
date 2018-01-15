@@ -41,7 +41,8 @@ ext {
             room                : "android.arch.persistence.room:runtime:${roomVersion}",
             picasso             : "com.squareup.picasso:picasso:${picassoVersion}",
             cardView            : "com.android.support:cardview-v7:${appCompatVersion}",
-            jodaTime            : "joda-time:joda-time:${jodaTimeVersion}"
+            jodaTime            : "joda-time:joda-time:${jodaTimeVersion}",
+            design              : "com.android.support:design:${appCompatVersion}"
     ]
 
     appTest = [
