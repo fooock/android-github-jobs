@@ -37,7 +37,7 @@ public class JobViewModel implements Parcelable {
         mDate = date;
     }
 
-    protected JobViewModel(Parcel in) {
+    private JobViewModel(Parcel in) {
         mId = in.readString();
         mTitle = in.readString();
         mLocation = in.readString();

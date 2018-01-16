@@ -30,7 +30,7 @@ public class CompanyViewModel implements Parcelable {
         mLogoUrl = logoUrl;
     }
 
-    protected CompanyViewModel(Parcel in) {
+    private CompanyViewModel(Parcel in) {
         mName = in.readString();
         mUrl = in.readString();
         mLogoUrl = in.readString();
