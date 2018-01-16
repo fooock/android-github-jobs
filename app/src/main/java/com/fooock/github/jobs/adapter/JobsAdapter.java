@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.fooock.github.jobs.R;
@@ -29,6 +31,8 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
     private final Context mContext;
     private final List<JobViewModel> mJobs;
 
+    private int mLastPosition = -1;
+
     public JobsAdapter(Context context, SelectedJobListener listener) {
         mJobs = new ArrayList<>();
         mContext = context.getApplicationContext();
@@ -45,6 +49,13 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         final JobViewModel viewModel = mJobs.get(position);
+
+        Animation animation = AnimationUtils.loadAnimation(mContext, (position > mLastPosition)
+                ? R.anim.up_from_bottom
+                : R.anim.down_from_top);
+        holder.itemView.startAnimation(animation);
+        mLastPosition = holder.getAdapterPosition();
+
         holder.mTxtJobTitle.setText(viewModel.getTitle());
         holder.mTxtJobType.setText(viewModel.getType());
         holder.mTxtCreated.setText(DateUtil.elapsedTime(
@@ -62,6 +73,12 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
     @Override
     public int getItemCount() {
         return mJobs.size();
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(Holder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.mLayout.clearAnimation();
     }
 
     public void update(List<JobViewModel> jobs) {

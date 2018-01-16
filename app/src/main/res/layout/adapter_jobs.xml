@@ -60,7 +60,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/fake_text_job_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/titleColor"
+            android:textColor="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
