@@ -1,5 +1,6 @@
 package com.fooock.github.jobs.presenter;
 
+import com.fooock.github.jobs.R;
 import com.fooock.github.jobs.domain.ObserverAdapter;
 import com.fooock.github.jobs.domain.interactor.GetJobs;
 import com.fooock.github.jobs.domain.model.JobOffer;
@@ -42,7 +43,10 @@ public class JobsPresenter extends Presenter<JobsView> {
 
             @Override
             public void onError(Throwable e) {
-                if (isAttached()) getView().loading(false);
+                if (isAttached()) {
+                    getView().loading(false);
+                    getView().onError(R.string.error_generic_msg, e);
+                }
             }
         }, page);
     }

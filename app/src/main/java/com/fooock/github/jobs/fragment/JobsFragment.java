@@ -3,6 +3,7 @@ package com.fooock.github.jobs.fragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -98,6 +99,13 @@ public class JobsFragment extends Fragment implements JobsView,
     @Override
     public void onError(int message, Throwable error) {
         Timber.e(error);
+        Snackbar.make(mRefreshLayout, message, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.retry, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mJobsPresenter.loadFirstPage();
+                    }
+                }).show();
     }
 
     @Override
