@@ -71,7 +71,7 @@ public class JobsFragment extends Fragment implements JobsView,
             @Override
             public void onUpdateMore(int page) {
                 Timber.d("Get results for page %s", page);
-                mJobsPresenter.loadJobs(page);
+                mJobsPresenter.loadJobs(page, false);
             }
         });
         mRefreshLayout.setOnRefreshListener(this);
@@ -103,7 +103,7 @@ public class JobsFragment extends Fragment implements JobsView,
                 .setAction(R.string.retry, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mJobsPresenter.loadFirstPage();
+                        mJobsPresenter.loadFirstPage(true);
                     }
                 }).show();
     }
@@ -117,7 +117,7 @@ public class JobsFragment extends Fragment implements JobsView,
     @Override
     public void onRefresh() {
         Timber.d("Refresh jobs");
-        mJobsPresenter.loadFirstPage();
+        mJobsPresenter.loadFirstPage(false);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class JobsFragment extends Fragment implements JobsView,
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState == null) {
-            mJobsPresenter.loadFirstPage();
+            mJobsPresenter.loadFirstPage(true);
             return;
         }
         ArrayList<JobViewModel> jobs = savedInstanceState.getParcelableArrayList(TAG_JOBS_LIST);

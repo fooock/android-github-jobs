@@ -26,12 +26,12 @@ public class JobsPresenter extends Presenter<JobsView> {
         mGetJobs = getJobs;
     }
 
-    public void loadFirstPage() {
-        loadJobs(JOBS_FIRST_PAGE);
+    public void loadFirstPage(boolean showLoading) {
+        loadJobs(JOBS_FIRST_PAGE, showLoading);
     }
 
-    public void loadJobs(int page) {
-        if (isAttached()) getView().loading(true);
+    public void loadJobs(int page, boolean showLoading) {
+        if (isAttached() && showLoading) getView().loading(true);
         mGetJobs.execute(new ObserverAdapter<List<JobOffer>>() {
             @Override
             public void onNext(List<JobOffer> jobOffers) {

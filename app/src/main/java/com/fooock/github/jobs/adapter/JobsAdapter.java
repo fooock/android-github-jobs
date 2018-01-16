@@ -79,10 +79,10 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
     }
 
     public void update(List<JobViewModel> jobs) {
+        Timber.d("Total jobs %s, update with %s", mJobs.size(), jobs.size());
         if (mJobs.isEmpty()) {
             mJobs.addAll(jobs);
             notifyItemRangeInserted(mJobs.size(), jobs.size());
-            Timber.d("Total jobs %s", mJobs.size());
             return;
         }
         for (JobViewModel job : jobs) {
@@ -94,7 +94,6 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
                 mJobs.add(job);
             }
         }
-        Timber.d("Total jobs %s", mJobs.size());
     }
 
     public ArrayList<JobViewModel> getJobs() {
