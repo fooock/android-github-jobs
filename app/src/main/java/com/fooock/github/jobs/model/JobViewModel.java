@@ -3,8 +3,6 @@ package com.fooock.github.jobs.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 /**
  *
  */
@@ -26,11 +24,11 @@ public class JobViewModel implements Parcelable {
     private String mTitle;
     private String mLocation;
     private String mType;
+    private String mDate;
 
     private CompanyViewModel mCompany;
-    private Date mDate;
 
-    public JobViewModel(String id, String title, String location, String type, CompanyViewModel company, Date date) {
+    public JobViewModel(String id, String title, String location, String type, CompanyViewModel company, String date) {
         mId = id;
         mTitle = title;
         mLocation = location;
@@ -45,7 +43,7 @@ public class JobViewModel implements Parcelable {
         mLocation = in.readString();
         mType = in.readString();
         mCompany = in.readParcelable(CompanyViewModel.class.getClassLoader());
-        mDate = new Date(in.readString());
+        mDate = in.readString();
     }
 
     public String getId() {
@@ -68,7 +66,7 @@ public class JobViewModel implements Parcelable {
         return mCompany;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return mDate;
     }
 
@@ -84,6 +82,6 @@ public class JobViewModel implements Parcelable {
         dest.writeString(mLocation);
         dest.writeString(mType);
         dest.writeParcelable(mCompany, flags);
-        dest.writeString(mDate.toString());
+        dest.writeString(mDate);
     }
 }
