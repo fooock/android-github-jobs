@@ -85,8 +85,8 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
         Timber.d("Total jobs %s", mJobs.size());
     }
 
-    public void clear() {
-        mJobs.clear();
+    public ArrayList<JobViewModel> getJobs() {
+        return (ArrayList<JobViewModel>) mJobs;
     }
 
     /**

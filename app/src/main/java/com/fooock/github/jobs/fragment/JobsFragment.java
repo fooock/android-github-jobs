@@ -21,6 +21,7 @@ import com.fooock.github.jobs.model.JobViewModel;
 import com.fooock.github.jobs.presenter.JobsPresenter;
 import com.fooock.github.jobs.presenter.view.JobsView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -34,6 +35,8 @@ import timber.log.Timber;
  */
 public class JobsFragment extends Fragment implements JobsView,
         SwipeRefreshLayout.OnRefreshListener, JobsAdapter.SelectedJobListener {
+
+    private static final String TAG_JOBS_LIST = "github.jobs";
 
     @BindView(R.id.rv_jobs) RecyclerView mJobList;
     @BindView(R.id.pb_loader) ProgressBar mProgressBar;
@@ -72,12 +75,10 @@ public class JobsFragment extends Fragment implements JobsView,
         });
         mRefreshLayout.setOnRefreshListener(this);
         mJobsPresenter.attach(this);
-        mJobsPresenter.loadFirstPage();
     }
 
     @Override
     public void onDestroyView() {
-        mJobsAdapter.clear();
         mJobsPresenter.detach();
         super.onDestroyView();
     }
@@ -119,5 +120,22 @@ public class JobsFragment extends Fragment implements JobsView,
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_fragment_jobs, menu);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList(TAG_JOBS_LIST, mJobsAdapter.getJobs());
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState == null) {
+            mJobsPresenter.loadFirstPage();
+            return;
+        }
+        ArrayList<JobViewModel> jobs = savedInstanceState.getParcelableArrayList(TAG_JOBS_LIST);
+        mJobsAdapter.update(jobs);
     }
 }
