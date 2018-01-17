@@ -134,6 +134,7 @@ public class JobsFragment extends Fragment implements JobsView,
         inflater.inflate(R.menu.menu_fragment_jobs, menu);
 
         SearchView searchView = getSearchView(menu);
+        searchView.setIconified(false);
         searchView.setMinimumWidth(Integer.MAX_VALUE);
     }
 
