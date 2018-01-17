@@ -135,7 +135,7 @@ public class JobsFragment extends Fragment implements JobsView,
 
         SearchView searchView = getSearchView(menu);
         searchView.setIconified(false);
-        searchView.setMinimumWidth(Integer.MAX_VALUE);
+        searchView.setMaxWidth(Integer.MAX_VALUE);
     }
 
     @Override
