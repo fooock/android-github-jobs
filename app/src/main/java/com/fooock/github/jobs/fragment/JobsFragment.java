@@ -1,14 +1,18 @@
 package com.fooock.github.jobs.fragment;
 
 import android.app.Fragment;
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -126,8 +130,11 @@ public class JobsFragment extends Fragment implements JobsView,
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(final Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_fragment_jobs, menu);
+
+        SearchView searchView = getSearchView(menu);
+        searchView.setMinimumWidth(Integer.MAX_VALUE);
     }
 
     @Override
@@ -145,5 +152,27 @@ public class JobsFragment extends Fragment implements JobsView,
         }
         ArrayList<JobViewModel> jobs = savedInstanceState.getParcelableArrayList(TAG_JOBS_LIST);
         mJobsAdapter.update(jobs);
+    }
+
+    private SearchView getSearchView(final Menu menu) {
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        MenuItem menuItem = menu.findItem(R.id.mnu_search);
+        menuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                menu.findItem(R.id.mnu_settings).setVisible(false);
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                menu.findItem(R.id.mnu_settings).setVisible(true);
+                return true;
+            }
+        });
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        if (searchManager == null) return searchView;
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        return searchView;
     }
 }

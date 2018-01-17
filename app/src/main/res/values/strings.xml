@@ -16,4 +16,6 @@
     <string name="home">Home</string>
     <string name="retry">Retry</string>
     <string name="error_generic_msg">A network error occurred, are you connected?</string>
+    <string name="search_hint">Search jobs</string>
+    <string name="search">Search</string>
 </resources>
