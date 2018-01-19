@@ -57,7 +57,6 @@ public class JobsFragment extends Fragment implements JobsView,
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         component().inject(this);
-        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -97,7 +96,7 @@ public class JobsFragment extends Fragment implements JobsView,
     @Override
     public void onJobsLoaded(List<JobViewModel> jobs) {
         Timber.d("Found %s jobs", jobs.size());
-
+        setHasOptionsMenu(true);
         mRefreshLayout.setRefreshing(false);
         mJobsAdapter.update(jobs);
     }
