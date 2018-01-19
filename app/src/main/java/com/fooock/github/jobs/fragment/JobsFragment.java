@@ -39,7 +39,7 @@ import timber.log.Timber;
  *
  */
 public class JobsFragment extends Fragment implements JobsView,
-        SwipeRefreshLayout.OnRefreshListener, JobsAdapter.SelectedJobListener {
+        SwipeRefreshLayout.OnRefreshListener, JobsAdapter.SelectedJobListener, SearchView.OnQueryTextListener {
 
     private static final String TAG_JOBS_LIST = "github.jobs";
 
@@ -136,6 +136,7 @@ public class JobsFragment extends Fragment implements JobsView,
         SearchView searchView = getSearchView(menu);
         searchView.setIconified(false);
         searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setOnQueryTextListener(this);
     }
 
     @Override
@@ -162,12 +163,14 @@ public class JobsFragment extends Fragment implements JobsView,
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
                 menu.findItem(R.id.mnu_settings).setVisible(false);
+                mJobsAdapter.enableAnimation(false);
                 return true;
             }
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
                 menu.findItem(R.id.mnu_settings).setVisible(true);
+                mJobsAdapter.enableAnimation(true);
                 return true;
             }
         });
@@ -175,5 +178,16 @@ public class JobsFragment extends Fragment implements JobsView,
         if (searchManager == null) return searchView;
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         return searchView;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        mJobsPresenter.filterBy(newText);
+        return true;
     }
 }

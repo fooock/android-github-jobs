@@ -36,4 +36,14 @@ public class LocalDataSource implements DataSource {
     public void save(List<JobData> jobs) {
         mJobDao.save(jobs);
     }
+
+    @Override
+    public Observable<List<JobData>> filterBy(final String query) {
+        return Observable.fromCallable(new Callable<List<JobData>>() {
+            @Override
+            public List<JobData> call() throws Exception {
+                return mJobDao.filterBy(query);
+            }
+        });
+    }
 }

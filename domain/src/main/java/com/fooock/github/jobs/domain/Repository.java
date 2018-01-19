@@ -12,4 +12,6 @@ import io.reactivex.Observable;
 public interface Repository {
 
     Observable<List<JobOffer>> getJobs(int page);
+
+    Observable<List<JobOffer>> filterBy(String query);
 }

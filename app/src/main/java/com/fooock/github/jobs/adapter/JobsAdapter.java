@@ -29,6 +29,8 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
     private final Context mContext;
     private final List<JobViewModel> mJobs;
 
+    private boolean mEnableAnimation = true;
+
     private int mLastPosition = -1;
 
     public JobsAdapter(Context context, SelectedJobListener listener) {
@@ -48,11 +50,13 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
     public void onBindViewHolder(Holder holder, int position) {
         final JobViewModel viewModel = mJobs.get(position);
 
-        Animation animation = AnimationUtils.loadAnimation(mContext, (position > mLastPosition)
-                ? R.anim.up_from_bottom
-                : R.anim.down_from_top);
-        holder.itemView.startAnimation(animation);
-        mLastPosition = holder.getAdapterPosition();
+        if (mEnableAnimation) {
+            Animation animation = AnimationUtils.loadAnimation(mContext, (position > mLastPosition)
+                    ? R.anim.up_from_bottom
+                    : R.anim.down_from_top);
+            holder.itemView.startAnimation(animation);
+            mLastPosition = holder.getAdapterPosition();
+        }
 
         holder.mTxtJobTitle.setText(viewModel.getTitle());
         holder.mTxtJobType.setText(viewModel.getType());
@@ -98,6 +102,10 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
 
     public ArrayList<JobViewModel> getJobs() {
         return (ArrayList<JobViewModel>) mJobs;
+    }
+
+    public void enableAnimation(boolean animate) {
+        mEnableAnimation = animate;
     }
 
     /**

@@ -20,4 +20,7 @@ public interface JobDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void save(List<JobData> jobs);
+
+    @Query("SELECT * FROM jobs WHERE title LIKE :query OR location LIKE :query OR company LIKE :query")
+    List<JobData> filterBy(String query);
 }

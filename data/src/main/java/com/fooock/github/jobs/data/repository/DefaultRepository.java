@@ -39,6 +39,17 @@ public class DefaultRepository implements Repository {
                 .toObservable();
     }
 
+    @Override
+    public Observable<List<JobOffer>> filterBy(final String query) {
+        return mLocalDataSource.filterBy(query)
+                .map(new Function<List<JobData>, List<JobOffer>>() {
+                    @Override
+                    public List<JobOffer> apply(List<JobData> jobData) throws Exception {
+                        return mJobDataMapper.map(jobData);
+                    }
+                });
+    }
+
     private Observable<List<JobOffer>> getJobsLocalObservable(int page) {
         return mLocalDataSource.getJobs(page)
                 .filter(new Predicate<List<JobData>>() {
