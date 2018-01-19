@@ -18,4 +18,6 @@ public interface JobsView {
     void loading(boolean isLoading);
 
     void onUpdateSearch(List<JobViewModel> jobsSearched);
+
+    void onEmptyResults();
 }

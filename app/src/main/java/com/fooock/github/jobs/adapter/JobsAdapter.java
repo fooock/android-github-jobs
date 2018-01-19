@@ -1,6 +1,7 @@
 package com.fooock.github.jobs.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -82,7 +83,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
         holder.mLayout.clearAnimation();
     }
 
-    public void update(List<JobViewModel> jobs) {
+    public void update(@NonNull List<JobViewModel> jobs) {
         Timber.d("Total jobs %s, update with %s", mJobs.size(), jobs.size());
         if (mJobs.isEmpty()) {
             mJobs.addAll(jobs);
@@ -108,7 +109,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
         mEnableAnimation = animate;
     }
 
-    public void updateSearch(List<JobViewModel> jobsSearched) {
+    public void updateSearch(@NonNull List<JobViewModel> jobsSearched) {
         mJobs.clear();
         mJobs.addAll(jobsSearched);
         notifyDataSetChanged();

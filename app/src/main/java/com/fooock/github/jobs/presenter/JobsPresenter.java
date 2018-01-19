@@ -73,7 +73,14 @@ public class JobsPresenter extends Presenter<JobsView> {
         mFilterJobs.execute(new ObserverAdapter<List<JobOffer>>() {
             @Override
             public void onNext(List<JobOffer> jobOffers) {
-                if (isAttached()) getView().onUpdateSearch(mJobOfferMapper.map(jobOffers));
+                if (jobOffers.isEmpty() && isAttached()) {
+                    getView().onEmptyResults();
+                    return;
+                }
+                if (isAttached()) {
+                    getView().loading(false);
+                    getView().onUpdateSearch(mJobOfferMapper.map(jobOffers));
+                }
             }
 
             @Override

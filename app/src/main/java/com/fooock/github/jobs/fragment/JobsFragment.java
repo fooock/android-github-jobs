@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.fooock.github.jobs.R;
@@ -46,6 +47,7 @@ public class JobsFragment extends Fragment implements JobsView,
     @BindView(R.id.rv_jobs) RecyclerView mJobList;
     @BindView(R.id.pb_loader) ProgressBar mProgressBar;
     @BindView(R.id.swipe_refresh) SwipeRefreshLayout mRefreshLayout;
+    @BindView(R.id.empty_results) LinearLayout mEmptyResultLayout;
 
     @Inject JobsPresenter mJobsPresenter;
 
@@ -121,7 +123,15 @@ public class JobsFragment extends Fragment implements JobsView,
     @Override
     public void onUpdateSearch(List<JobViewModel> jobsSearched) {
         Timber.d("Found %s matches", jobsSearched.size());
+        mEmptyResultLayout.setVisibility(View.GONE);
         mJobsAdapter.updateSearch(jobsSearched);
+    }
+
+    @Override
+    public void onEmptyResults() {
+        Timber.d("No search results found");
+        mEmptyResultLayout.setVisibility(View.VISIBLE);
+        mJobList.setVisibility(View.GONE);
     }
 
     @Override
@@ -170,6 +180,7 @@ public class JobsFragment extends Fragment implements JobsView,
             public boolean onMenuItemActionExpand(MenuItem item) {
                 menu.findItem(R.id.mnu_settings).setVisible(false);
                 mJobsAdapter.enableAnimation(false);
+                mRefreshLayout.setEnabled(false);
                 return true;
             }
 
@@ -177,6 +188,7 @@ public class JobsFragment extends Fragment implements JobsView,
             public boolean onMenuItemActionCollapse(MenuItem item) {
                 menu.findItem(R.id.mnu_settings).setVisible(true);
                 mJobsAdapter.enableAnimation(true);
+                mRefreshLayout.setEnabled(true);
                 return true;
             }
         });
