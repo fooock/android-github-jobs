@@ -73,9 +73,7 @@ public class JobsPresenter extends Presenter<JobsView> {
         mFilterJobs.execute(new ObserverAdapter<List<JobOffer>>() {
             @Override
             public void onNext(List<JobOffer> jobOffers) {
-                if (isAttached()) {
-                    Timber.d("Found %s matches", jobOffers.size());
-                }
+                if (isAttached()) getView().onUpdateSearch(mJobOfferMapper.map(jobOffers));
             }
 
             @Override

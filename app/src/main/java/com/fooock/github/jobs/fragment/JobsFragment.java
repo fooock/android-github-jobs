@@ -119,6 +119,12 @@ public class JobsFragment extends Fragment implements JobsView,
     }
 
     @Override
+    public void onUpdateSearch(List<JobViewModel> jobsSearched) {
+        Timber.d("Found %s matches", jobsSearched.size());
+        mJobsAdapter.updateSearch(jobsSearched);
+    }
+
+    @Override
     public void onRefresh() {
         Timber.d("Refresh jobs");
         mJobsPresenter.loadFirstPage(false);

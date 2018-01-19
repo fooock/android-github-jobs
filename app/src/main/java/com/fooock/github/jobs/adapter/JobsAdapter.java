@@ -108,6 +108,12 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
         mEnableAnimation = animate;
     }
 
+    public void updateSearch(List<JobViewModel> jobsSearched) {
+        mJobs.clear();
+        mJobs.addAll(jobsSearched);
+        notifyDataSetChanged();
+    }
+
     /**
      *
      */
