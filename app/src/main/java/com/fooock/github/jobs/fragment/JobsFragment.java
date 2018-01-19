@@ -181,6 +181,7 @@ public class JobsFragment extends Fragment implements JobsView,
             }
         });
         SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint(getString(R.string.search_hint));
         if (searchManager == null) return searchView;
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         return searchView;

@@ -3,7 +3,6 @@
     <string name="title_jobs">Github Jobs</string>
     <string name="company_logo">Company logo</string>
     <string name="separator">/</string>
-    <string name="more">MORE...</string>
     <string name="fake_text_created_at">Published 6 hours ago</string>
     <string name="fake_text_location">A Coruna</string>
     <string name="fake_text_job_title">Senior Android developer</string>
@@ -16,6 +15,6 @@
     <string name="home">Home</string>
     <string name="retry">Retry</string>
     <string name="error_generic_msg">A network error occurred, are you connected?</string>
-    <string name="search_hint">Search jobs</string>
+    <string name="search_hint">Search jobs…</string>
     <string name="search">Search</string>
 </resources>
