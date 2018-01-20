@@ -43,6 +43,7 @@ public class JobsFragment extends Fragment implements JobsView,
         SwipeRefreshLayout.OnRefreshListener, JobsAdapter.SelectedJobListener, SearchView.OnQueryTextListener {
 
     private static final String TAG_JOBS_LIST = "github.jobs";
+    private static final String TAG_SEARCH_QUERY = "search.query";
 
     @BindView(R.id.rv_jobs) RecyclerView mJobList;
     @BindView(R.id.pb_loader) ProgressBar mProgressBar;
@@ -52,6 +53,8 @@ public class JobsFragment extends Fragment implements JobsView,
     @Inject JobsPresenter mJobsPresenter;
 
     private JobsAdapter mJobsAdapter;
+    private SearchView mSearchView;
+    private String mSearchFilter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -147,17 +150,14 @@ public class JobsFragment extends Fragment implements JobsView,
     @Override
     public void onCreateOptionsMenu(final Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_fragment_jobs, menu);
-
-        SearchView searchView = getSearchView(menu);
-        searchView.setIconified(false);
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-        searchView.setOnQueryTextListener(this);
+        configureSearchView(menu);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelableArrayList(TAG_JOBS_LIST, mJobsAdapter.getJobs());
+        outState.putString(TAG_SEARCH_QUERY, mSearchView.getQuery().toString());
     }
 
     @Override
@@ -169,11 +169,12 @@ public class JobsFragment extends Fragment implements JobsView,
         }
         ArrayList<JobViewModel> jobs = savedInstanceState.getParcelableArrayList(TAG_JOBS_LIST);
         if (jobs == null || jobs.isEmpty()) return;
-        mJobsAdapter.update(jobs);
-        setHasOptionsMenu(true);
+        onJobsLoaded(jobs);
+
+        mSearchFilter = savedInstanceState.getString(TAG_SEARCH_QUERY);
     }
 
-    private SearchView getSearchView(final Menu menu) {
+    private void configureSearchView(final Menu menu) {
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         MenuItem menuItem = menu.findItem(R.id.mnu_search);
         menuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
@@ -193,11 +194,16 @@ public class JobsFragment extends Fragment implements JobsView,
                 return true;
             }
         });
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint(getString(R.string.search_hint));
-        if (searchManager == null) return searchView;
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-        return searchView;
+        mSearchView = (SearchView) menuItem.getActionView();
+        mSearchView.setQueryHint(getString(R.string.search_hint));
+        if (searchManager != null)
+            mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        mSearchView.setIconified(false);
+        mSearchView.setMaxWidth(Integer.MAX_VALUE);
+        mSearchView.setOnQueryTextListener(this);
+
+        if (mSearchFilter != null && !mSearchFilter.isEmpty())
+            mSearchView.setQuery(mSearchFilter, false);
     }
 
     @Override

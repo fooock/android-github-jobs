@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme">
 
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".activity.GithubJobsActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
