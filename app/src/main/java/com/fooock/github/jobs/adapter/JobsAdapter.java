@@ -38,7 +38,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
 
     private int mLastPosition = -1;
 
-    private String mSearchFilter = "";
+    private String mSearchFilter;
 
     public JobsAdapter(Context context, SelectedJobListener listener) {
         mJobs = new ArrayList<>();
@@ -82,7 +82,10 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
     }
 
     private void highlightText(String original, TextView view) {
-        if (mSearchFilter == null || mSearchFilter.isEmpty()) view.setText(original);
+        if (mSearchFilter == null || mSearchFilter.isEmpty()) {
+            view.setText(original);
+            return;
+        }
         String text = original.toLowerCase();
         if (text.contains(mSearchFilter)) {
             int startPos = text.indexOf(mSearchFilter);
