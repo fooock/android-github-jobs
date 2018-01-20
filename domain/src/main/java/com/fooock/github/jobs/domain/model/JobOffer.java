@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  *
  */
-public class JobOffer {
+public class JobOffer implements Comparable<JobOffer> {
 
     private String mId;
     private String mTitle;
@@ -79,5 +79,10 @@ public class JobOffer {
 
     public void setCreatedAt(Date createdAt) {
         mCreatedAt = createdAt;
+    }
+
+    @Override
+    public int compareTo(JobOffer jobOffer) {
+        return jobOffer.getCreatedAt().compareTo(mCreatedAt);
     }
 }

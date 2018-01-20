@@ -52,6 +52,14 @@ public class JobsFragment extends Fragment implements JobsView,
 
     @Inject JobsPresenter mJobsPresenter;
 
+    private final EndlessScrollListener mEndlessScrollListener = new EndlessScrollListener() {
+        @Override
+        public void onUpdateMore(int page) {
+            Timber.d("Get results for page %s", page);
+            mJobsPresenter.loadJobs(page, false);
+        }
+    };
+
     private JobsAdapter mJobsAdapter;
     private SearchView mSearchView;
     private String mSearchFilter;
@@ -75,13 +83,7 @@ public class JobsFragment extends Fragment implements JobsView,
         getActivity().setTitle(R.string.title_jobs);
         mJobsAdapter = new JobsAdapter(getActivity(), this);
         mJobList.setAdapter(mJobsAdapter);
-        mJobList.addOnScrollListener(new EndlessScrollListener() {
-            @Override
-            public void onUpdateMore(int page) {
-                Timber.d("Get results for page %s", page);
-                mJobsPresenter.loadJobs(page, false);
-            }
-        });
+        mJobList.addOnScrollListener(mEndlessScrollListener);
         mRefreshLayout.setOnRefreshListener(this);
         mJobsPresenter.attach(this);
     }
@@ -183,6 +185,7 @@ public class JobsFragment extends Fragment implements JobsView,
                 menu.findItem(R.id.mnu_settings).setVisible(false);
                 mJobsAdapter.enableAnimation(false);
                 mRefreshLayout.setEnabled(false);
+                mEndlessScrollListener.disableDynamicLoading();
                 return true;
             }
 
@@ -191,6 +194,7 @@ public class JobsFragment extends Fragment implements JobsView,
                 menu.findItem(R.id.mnu_settings).setVisible(true);
                 mJobsAdapter.enableAnimation(true);
                 mRefreshLayout.setEnabled(true);
+                mEndlessScrollListener.enableDynamicLoading();
                 return true;
             }
         });

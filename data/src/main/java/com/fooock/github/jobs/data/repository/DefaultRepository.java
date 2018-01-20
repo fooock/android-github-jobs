@@ -11,6 +11,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -33,10 +35,9 @@ public class DefaultRepository implements Repository {
     }
 
     @Override
-    public Observable<List<JobOffer>> getJobs(int page) {
+    public Flowable<List<JobOffer>> getJobs(int page) {
         return Observable.concat(getJobsLocalObservable(page), getJobsRemoteObservable(page))
-                .firstElement()
-                .toObservable();
+                .toFlowable(BackpressureStrategy.BUFFER);
     }
 
     @Override

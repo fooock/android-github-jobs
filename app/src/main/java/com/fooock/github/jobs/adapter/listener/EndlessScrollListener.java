@@ -15,6 +15,7 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
     private static final int VISIBLE_THRESHOLD = 1;
 
     private boolean mLoading = true;
+    private boolean mEnabled = true;
 
     private int mPrevTotal = 0;
     private int mCurrentPage = CURRENT_PAGE;
@@ -22,7 +23,7 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
     @Override
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         // If dy is < 0 the scroll is up
-        if (dy < 0) return;
+        if (dy < 0 || !mEnabled) return;
 
         LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
 
@@ -46,4 +47,12 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
     }
 
     public abstract void onUpdateMore(int page);
+
+    public void disableDynamicLoading() {
+        mEnabled = false;
+    }
+
+    public void enableDynamicLoading() {
+        mEnabled = true;
+    }
 }

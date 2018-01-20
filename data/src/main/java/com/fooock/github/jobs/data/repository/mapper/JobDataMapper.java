@@ -6,6 +6,7 @@ import com.fooock.github.jobs.domain.model.Company;
 import com.fooock.github.jobs.domain.model.JobOffer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class JobDataMapper implements Mapper<List<JobData>, List<JobOffer>> {
 
             jobs.add(offer);
         }
+        Collections.sort(jobs);
         return jobs;
     }
 }

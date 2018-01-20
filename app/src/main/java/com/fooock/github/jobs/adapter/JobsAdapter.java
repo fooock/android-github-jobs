@@ -129,6 +129,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
                 mJobs.add(index, job);
             } else {
                 mJobs.add(job);
+                notifyItemInserted(mJobs.size());
             }
         }
     }
