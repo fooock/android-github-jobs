@@ -23,7 +23,7 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
     @Override
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         // If dy is < 0 the scroll is up
-        if (dy < 0 || !mEnabled) return;
+        if (dy < 0) return;
 
         LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
 
@@ -38,6 +38,7 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
             }
         }
 
+        if (!mEnabled) return;
         final int lastElements = itemCount - childCount;
         if (!mLoading && lastElements <= (visibleItemPosition + VISIBLE_THRESHOLD)) {
             mCurrentPage += 1;
