@@ -12,7 +12,7 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
     // http://stackoverflow.com/questions/26543131/how-to-implement-endless-list-with-recyclerview
 
     private static final int CURRENT_PAGE = 0;
-    private static final int VISIBLE_THRESHOLD = 1;
+    private static final int VISIBLE_THRESHOLD = 25;
 
     private boolean mLoading = true;
     private boolean mEnabled = true;
