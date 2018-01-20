@@ -6,8 +6,10 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
+import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,6 +94,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
             int endPos = startPos + mSearchFilter.length();
 
             Spannable spanText = Spannable.Factory.getInstance().newSpannable(original);
+            spanText.setSpan(new UnderlineSpan(), startPos, endPos, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             spanText.setSpan(new StyleSpan(Typeface.BOLD), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             spanText.setSpan(new ForegroundColorSpan(mContext.getColor(R.color.textColorDark)),
                     startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
