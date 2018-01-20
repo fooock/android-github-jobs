@@ -123,7 +123,7 @@ public class JobsFragment extends Fragment implements JobsView,
     public void onUpdateSearch(List<JobViewModel> jobsSearched, String query) {
         Timber.d("Found %s matches for %s", jobsSearched.size(), query);
         mEmptyResultLayout.setVisibility(View.GONE);
-        mJobsAdapter.updateSearch(jobsSearched);
+        mJobsAdapter.updateSearch(jobsSearched, query);
     }
 
     @Override

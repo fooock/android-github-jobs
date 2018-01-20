@@ -1,9 +1,13 @@
 package com.fooock.github.jobs.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +38,8 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
 
     private int mLastPosition = -1;
 
+    private String mSearchFilter = "";
+
     public JobsAdapter(Context context, SelectedJobListener listener) {
         mJobs = new ArrayList<>();
         mContext = context.getApplicationContext();
@@ -61,17 +67,35 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
             holder.mLayout.clearAnimation();
         }
 
-        holder.mTxtJobTitle.setText(viewModel.getTitle());
+        highlightText(viewModel.getTitle(), holder.mTxtJobTitle);
+        highlightText(viewModel.getCompany().getName(), holder.mTxtCompanyName);
+        highlightText(viewModel.getLocation(), holder.mTxtLocation);
+
         holder.mTxtJobType.setText(viewModel.getType());
         holder.mTxtCreated.setText(viewModel.getDate());
-        holder.mTxtCompanyName.setText(viewModel.getCompany().getName());
-        holder.mTxtLocation.setText(viewModel.getLocation());
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mJobListener.onSelectedJob(viewModel.getId());
             }
         });
+    }
+
+    private void highlightText(String original, TextView view) {
+        if (mSearchFilter == null || mSearchFilter.isEmpty()) view.setText(original);
+        String text = original.toLowerCase();
+        if (text.contains(mSearchFilter)) {
+            int startPos = text.indexOf(mSearchFilter);
+            int endPos = startPos + mSearchFilter.length();
+
+            Spannable spanText = Spannable.Factory.getInstance().newSpannable(original);
+            spanText.setSpan(new StyleSpan(Typeface.BOLD), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spanText.setSpan(new ForegroundColorSpan(mContext.getColor(R.color.textColorDark)),
+                    startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            view.setText(spanText, TextView.BufferType.SPANNABLE);
+        } else {
+            view.setText(original);
+        }
     }
 
     @Override
@@ -111,7 +135,8 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
         mEnableAnimation = animate;
     }
 
-    public void updateSearch(@NonNull List<JobViewModel> jobsSearched) {
+    public void updateSearch(@NonNull List<JobViewModel> jobsSearched, String query) {
+        mSearchFilter = query;
         mJobs.clear();
         mJobs.addAll(jobsSearched);
         notifyDataSetChanged();
