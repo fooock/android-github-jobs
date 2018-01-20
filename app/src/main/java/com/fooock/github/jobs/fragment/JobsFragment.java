@@ -168,7 +168,9 @@ public class JobsFragment extends Fragment implements JobsView,
             return;
         }
         ArrayList<JobViewModel> jobs = savedInstanceState.getParcelableArrayList(TAG_JOBS_LIST);
+        if (jobs == null || jobs.isEmpty()) return;
         mJobsAdapter.update(jobs);
+        setHasOptionsMenu(true);
     }
 
     private SearchView getSearchView(final Menu menu) {
