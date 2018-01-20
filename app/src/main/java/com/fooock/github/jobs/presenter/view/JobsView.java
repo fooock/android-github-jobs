@@ -17,7 +17,7 @@ public interface JobsView {
 
     void loading(boolean isLoading);
 
-    void onUpdateSearch(List<JobViewModel> jobsSearched);
+    void onUpdateSearch(List<JobViewModel> jobsSearched, String query);
 
-    void onEmptyResults();
+    void onEmptyResults(String query);
 }

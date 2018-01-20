@@ -57,6 +57,8 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
                     : R.anim.down_from_top);
             holder.itemView.startAnimation(animation);
             mLastPosition = holder.getAdapterPosition();
+        } else {
+            holder.mLayout.clearAnimation();
         }
 
         holder.mTxtJobTitle.setText(viewModel.getTitle());

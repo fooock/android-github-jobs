@@ -68,18 +68,18 @@ public class JobsPresenter extends Presenter<JobsView> {
      *
      * @param query Query to filter results
      */
-    public void filterBy(String query) {
+    public void filterBy(final String query) {
         Timber.d("Find %s", query);
         mFilterJobs.execute(new ObserverAdapter<List<JobOffer>>() {
             @Override
             public void onNext(List<JobOffer> jobOffers) {
                 if (jobOffers.isEmpty() && isAttached()) {
-                    getView().onEmptyResults();
+                    getView().onEmptyResults(query);
                     return;
                 }
                 if (isAttached()) {
                     getView().loading(false);
-                    getView().onUpdateSearch(mJobOfferMapper.map(jobOffers));
+                    getView().onUpdateSearch(mJobOfferMapper.map(jobOffers), query);
                 }
             }
 

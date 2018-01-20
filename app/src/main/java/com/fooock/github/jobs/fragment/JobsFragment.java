@@ -120,15 +120,15 @@ public class JobsFragment extends Fragment implements JobsView,
     }
 
     @Override
-    public void onUpdateSearch(List<JobViewModel> jobsSearched) {
-        Timber.d("Found %s matches", jobsSearched.size());
+    public void onUpdateSearch(List<JobViewModel> jobsSearched, String query) {
+        Timber.d("Found %s matches for %s", jobsSearched.size(), query);
         mEmptyResultLayout.setVisibility(View.GONE);
         mJobsAdapter.updateSearch(jobsSearched);
     }
 
     @Override
-    public void onEmptyResults() {
-        Timber.d("No search results found");
+    public void onEmptyResults(String query) {
+        Timber.d("No search results found for %s", query);
         mEmptyResultLayout.setVisibility(View.VISIBLE);
         mJobList.setVisibility(View.GONE);
     }
