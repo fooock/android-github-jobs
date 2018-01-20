@@ -158,8 +158,10 @@ public class JobsFragment extends Fragment implements JobsView,
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList(TAG_JOBS_LIST, mJobsAdapter.getJobs());
-        outState.putString(TAG_SEARCH_QUERY, mSearchView.getQuery().toString());
+        if (!mJobsAdapter.getJobs().isEmpty())
+            outState.putParcelableArrayList(TAG_JOBS_LIST, mJobsAdapter.getJobs());
+        if (mSearchView != null)
+            outState.putString(TAG_SEARCH_QUERY, mSearchView.getQuery().toString());
     }
 
     @Override
