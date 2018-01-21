@@ -3,7 +3,6 @@ package com.fooock.github.jobs.adapter;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.Spanned;
@@ -15,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fooock.github.jobs.R;
@@ -154,7 +154,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
      */
     static class Holder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.job_base_layout) ConstraintLayout mLayout;
+        @BindView(R.id.job_base_layout) LinearLayout mLayout;
         @BindView(R.id.txt_job_title) TextView mTxtJobTitle;
         @BindView(R.id.txt_job_type) TextView mTxtJobType;
         @BindView(R.id.txt_created_at) TextView mTxtCreated;
