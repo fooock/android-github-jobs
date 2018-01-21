@@ -96,7 +96,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
             Spannable spanText = Spannable.Factory.getInstance().newSpannable(original);
             spanText.setSpan(new UnderlineSpan(), startPos, endPos, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             spanText.setSpan(new StyleSpan(Typeface.BOLD), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            spanText.setSpan(new ForegroundColorSpan(mContext.getColor(R.color.textColorDark)),
+            spanText.setSpan(new ForegroundColorSpan(mContext.getColor(R.color.textColor)),
                     startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             view.setText(spanText, TextView.BufferType.SPANNABLE);
         } else {
