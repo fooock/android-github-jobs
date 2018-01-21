@@ -135,10 +135,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
             }
         }
         Collections.sort(mJobs);
-
-        enableAnimation(false);
         if (added) notifyDataSetChanged();
-        enableAnimation(true);
     }
 
     public ArrayList<JobViewModel> getJobs() {
