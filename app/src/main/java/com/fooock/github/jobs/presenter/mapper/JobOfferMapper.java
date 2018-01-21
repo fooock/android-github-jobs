@@ -26,7 +26,7 @@ public class JobOfferMapper implements Mapper<List<JobOffer>, List<JobViewModel>
             String date = DateUtil.elapsedTime(offer.getCreatedAt(), new Date(System.currentTimeMillis()));
 
             jobs.add(new JobViewModel(offer.getId(), offer.getTitle().trim(), offer.getLocation().trim(),
-                    offer.getType().trim(), company, date));
+                    offer.getType().trim(), company, date, offer.getCreatedAt()));
         }
         return jobs;
     }

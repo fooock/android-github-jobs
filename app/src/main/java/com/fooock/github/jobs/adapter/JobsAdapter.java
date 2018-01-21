@@ -21,6 +21,7 @@ import com.fooock.github.jobs.R;
 import com.fooock.github.jobs.model.JobViewModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -122,16 +123,22 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
             notifyItemRangeInserted(mJobs.size(), jobs.size());
             return;
         }
+        boolean added = false;
         for (JobViewModel job : jobs) {
             if (mJobs.contains(job)) {
                 int index = mJobs.indexOf(job);
                 mJobs.remove(index);
                 mJobs.add(index, job);
             } else {
+                added = true;
                 mJobs.add(job);
-                notifyItemInserted(mJobs.size());
             }
         }
+        Collections.sort(mJobs);
+
+        enableAnimation(false);
+        if (added) notifyDataSetChanged();
+        enableAnimation(true);
     }
 
     public ArrayList<JobViewModel> getJobs() {

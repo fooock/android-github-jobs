@@ -2,11 +2,14 @@ package com.fooock.github.jobs.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+
+import java.util.Date;
 
 /**
  *
  */
-public class JobViewModel implements Parcelable {
+public class JobViewModel implements Parcelable, Comparable<JobViewModel> {
 
     public static final Creator<JobViewModel> CREATOR = new Creator<JobViewModel>() {
         @Override
@@ -27,14 +30,16 @@ public class JobViewModel implements Parcelable {
     private String mDate;
 
     private CompanyViewModel mCompany;
+    private Date mCreated;
 
-    public JobViewModel(String id, String title, String location, String type, CompanyViewModel company, String date) {
+    public JobViewModel(String id, String title, String location, String type, CompanyViewModel company, String date, Date createdAt) {
         mId = id;
         mTitle = title;
         mLocation = location;
         mType = type;
         mCompany = company;
         mDate = date;
+        mCreated = createdAt;
     }
 
     private JobViewModel(Parcel in) {
@@ -44,6 +49,7 @@ public class JobViewModel implements Parcelable {
         mType = in.readString();
         mCompany = in.readParcelable(CompanyViewModel.class.getClassLoader());
         mDate = in.readString();
+        mCreated = new Date(in.readString());
     }
 
     public String getId() {
@@ -70,6 +76,10 @@ public class JobViewModel implements Parcelable {
         return mDate;
     }
 
+    private Date getCreated() {
+        return mCreated;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -83,6 +93,7 @@ public class JobViewModel implements Parcelable {
         dest.writeString(mType);
         dest.writeParcelable(mCompany, flags);
         dest.writeString(mDate);
+        dest.writeString(mCreated.toString());
     }
 
     @Override
@@ -98,5 +109,10 @@ public class JobViewModel implements Parcelable {
     @Override
     public int hashCode() {
         return mId.hashCode();
+    }
+
+    @Override
+    public int compareTo(@NonNull JobViewModel o) {
+        return o.getCreated().compareTo(mCreated);
     }
 }
