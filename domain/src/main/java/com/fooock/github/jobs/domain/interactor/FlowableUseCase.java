@@ -29,7 +29,7 @@ abstract class FlowableUseCase<T, P> {
         Flowable<T> observable = build(params)
                 .subscribeOn(Schedulers.from(mThreadExecutor))
                 .observeOn(mMainThread.scheduler());
-        observable.subscribeWith(new DisposableSubscriber<T>() {
+        mCompositeDisposable.add(observable.subscribeWith(new DisposableSubscriber<T>() {
             @Override
             public void onNext(T t) {
                 observer.onNext(t);
@@ -44,7 +44,7 @@ abstract class FlowableUseCase<T, P> {
             public void onComplete() {
                 observer.onComplete();
             }
-        });
+        }));
     }
 
     public void close() {
