@@ -19,4 +19,7 @@
     <string name="search">Search</string>
     <string name="sorry_no_results_found">Sorry, no results found</string>
     <string name="no_results_found">No results found</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="share">Share</string>
+    <string name="legal_notices">Legal notices</string>
 </resources>

@@ -61,6 +61,7 @@ public class JobsPresenter extends Presenter<JobsView> {
     public void detach() {
         super.detach();
         mGetJobs.close();
+        mFilterJobs.close();
     }
 
     /**
