@@ -2,6 +2,8 @@ package com.fooock.github.jobs.util;
 
 import org.joda.time.Interval;
 import org.joda.time.Period;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
 
 import java.util.Date;
 
@@ -17,16 +19,64 @@ public final class DateUtil {
         Interval interval = new Interval(from.getTime(), to.getTime());
         Period period = interval.toPeriod();
 
-        if (period.getHours() <= 0 && period.getDays() <= 0 && period.getMonths() <= 0)
-            return String.format("Published %s minutes ago", period.getMinutes());
-        if (period.getDays() <= 0 && period.getMonths() <= 0)
-            return String.format("Published %s hours ago", period.getHours());
-        if (getDays(period) > 30)
-            return String.format("Published %s months ago", period.getMonths() == 0 ? 1 : period.getMonths());
-        return String.format("Published %s days ago", getDays(period));
-    }
+        PeriodFormatter formatter;
 
-    private static int getDays(Period period) {
-        return period.getDays() + (period.getWeeks() * 7);
+        if (period.getYears() != 0) {
+            formatter = new PeriodFormatterBuilder()
+                    .appendPrefix("Published ")
+                    .appendYears()
+                    .appendSuffix(" year ago", " years ago")
+                    .printZeroNever()
+                    .toFormatter();
+
+        } else if (period.getMonths() != 0) {
+            formatter = new PeriodFormatterBuilder()
+                    .appendPrefix("Published ")
+                    .appendMonths()
+                    .appendSuffix(" month ago", " months ago")
+                    .printZeroNever()
+                    .toFormatter();
+
+        } else if (period.getWeeks() != 0) {
+            formatter = new PeriodFormatterBuilder()
+                    .appendPrefix("Published ")
+                    .appendWeeks()
+                    .appendSuffix(" week ago", " weeks ago")
+                    .printZeroNever()
+                    .toFormatter();
+
+        } else if (period.getDays() != 0) {
+            formatter = new PeriodFormatterBuilder()
+                    .appendPrefix("Published ")
+                    .appendDays()
+                    .appendSuffix(" day ago", " days ago")
+                    .printZeroNever()
+                    .toFormatter();
+
+        } else if (period.getHours() != 0) {
+            formatter = new PeriodFormatterBuilder()
+                    .appendPrefix("Published ")
+                    .appendHours()
+                    .appendSuffix(" hour ago", " hours ago")
+                    .printZeroNever()
+                    .toFormatter();
+
+        } else if (period.getMinutes() != 0) {
+            formatter = new PeriodFormatterBuilder()
+                    .appendPrefix("Published ")
+                    .appendMinutes()
+                    .appendSuffix(" minute ago", " minutes ago")
+                    .printZeroNever()
+                    .toFormatter();
+
+        } else {
+            formatter = new PeriodFormatterBuilder()
+                    .appendPrefix("Published ")
+                    .appendSeconds()
+                    .appendSuffix(" second ago", " seconds ago")
+                    .printZeroNever()
+                    .toFormatter();
+        }
+        return formatter.print(period);
     }
 }
