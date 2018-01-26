@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -52,6 +53,7 @@ public class JobsFragment extends Fragment implements JobsView,
 
     @Inject JobsPresenter mJobsPresenter;
 
+    private final Handler mDelayedHandler = new Handler();
     private final EndlessScrollListener mEndlessScrollListener = new EndlessScrollListener() {
         @Override
         public void onUpdateMore(int page) {
@@ -90,6 +92,7 @@ public class JobsFragment extends Fragment implements JobsView,
 
     @Override
     public void onDestroyView() {
+        mDelayedHandler.removeCallbacksAndMessages(null);
         mJobsPresenter.detach();
         super.onDestroyView();
     }
@@ -219,8 +222,14 @@ public class JobsFragment extends Fragment implements JobsView,
     }
 
     @Override
-    public boolean onQueryTextChange(String newText) {
-        mJobsPresenter.filterBy(newText);
+    public boolean onQueryTextChange(final String newText) {
+        mDelayedHandler.removeCallbacksAndMessages(null);
+        mDelayedHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mJobsPresenter.filterBy(newText);
+            }
+        }, 150);
         return true;
     }
 }
