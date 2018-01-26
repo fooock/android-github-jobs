@@ -23,13 +23,18 @@ public class LocalDataSource implements DataSource {
     }
 
     @Override
-    public Observable<List<JobData>> getJobs(int page) {
+    public Observable<List<JobData>> getJobs(final int page) {
         return Observable.fromCallable(new Callable<List<JobData>>() {
             @Override
             public List<JobData> call() throws Exception {
                 return mJobDao.getJobs();
             }
         });
+    }
+
+    private int calculateOffset(int page) {
+        if (page == 0) return 0;
+        return (page + 1) * 50;
     }
 
     @Override

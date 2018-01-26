@@ -15,6 +15,7 @@ import java.util.List;
 @Dao
 public interface JobDao {
 
+    //@Query("SELECT * FROM jobs ORDER BY created_at ASC LIMIT 50 OFFSET :offset")
     @Query("SELECT * FROM jobs")
     List<JobData> getJobs();
 
