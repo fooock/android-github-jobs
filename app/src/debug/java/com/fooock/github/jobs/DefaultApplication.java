@@ -14,6 +14,7 @@ public class DefaultApplication extends GithubJobsApplication {
 
     @Override
     void initialize() {
+
         // this does not enable network inspection!
         Stetho.initializeWithDefaults(this);
 

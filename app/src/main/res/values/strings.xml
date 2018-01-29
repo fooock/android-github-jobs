@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">GithubJobsActivity</string>
+    <string name="app_name">Github Jobs</string>
+    <string name="title_jobs">Github Jobs</string>
+    <string name="company_logo">Company logo</string>
+    <string name="separator">/</string>
+    <string name="fake_text_created_at">Published 6 hours ago</string>
+    <string name="fake_text_location">A Coruna</string>
+    <string name="fake_text_job_title">Senior Android developer</string>
+    <string name="fakse_text_company">fooock</string>
+    <string name="fake_text_job_type">Full time</string>
+    <string name="settings">Settings</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="nav_header_hello">Hello!</string>
+    <string name="home">Home</string>
+    <string name="retry">Retry</string>
+    <string name="error_generic_msg">A network error occurred, are you connected?</string>
+    <string name="search_hint">Search jobs…</string>
+    <string name="search">Search</string>
+    <string name="sorry_no_results_found">Sorry, no results found</string>
+    <string name="no_results_found">No results found</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="share">Share</string>
+    <string name="legal_notices">Legal notices</string>
 </resources>

@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        versionCode rootProject.ext.gitVersionCode
+        versionName rootProject.ext.gitVersionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':domain')
+
+    implementation rootProject.ext.dataLibraries.dagger
+    implementation rootProject.ext.dataLibraries.rxJava
+    implementation rootProject.ext.dataLibraries.retrofit
+    implementation rootProject.ext.dataLibraries.retrofitConverter
+    implementation rootProject.ext.dataLibraries.room
+    annotationProcessor rootProject.ext.dataLibraries.roomCompiler
+
+    testImplementation rootProject.ext.dataTest.junit
+    testImplementation rootProject.ext.dataTest.mockito
+}

@@ -1,0 +1,14 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation rootProject.ext.domainLibraries.dagger
+    implementation rootProject.ext.domainLibraries.rxJava
+
+    testImplementation rootProject.ext.domainTest.junit
+    testImplementation rootProject.ext.domainTest.mockito
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
