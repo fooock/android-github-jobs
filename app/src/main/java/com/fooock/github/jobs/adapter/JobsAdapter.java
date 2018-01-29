@@ -142,7 +142,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
         return (ArrayList<JobViewModel>) mJobs;
     }
 
-    public void enableAnimation(boolean animate) {
+    public synchronized void enableAnimation(boolean animate) {
         mEnableAnimation = animate;
     }
 
