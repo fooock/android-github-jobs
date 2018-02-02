@@ -1,6 +1,8 @@
 package com.fooock.github.jobs.di;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 
 import com.fooock.github.jobs.GithubJobsApplication;
@@ -66,6 +68,12 @@ public class AppModule {
     @Provides
     Context providesContext() {
         return mApplication.getApplicationContext();
+    }
+
+    @Singleton
+    @Provides
+    SharedPreferences providesPreferences(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     /**

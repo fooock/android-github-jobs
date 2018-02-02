@@ -2,6 +2,7 @@ package com.fooock.github.jobs.di;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.fooock.github.jobs.GithubJobsApplication;
 import com.fooock.github.jobs.data.DataSource;
@@ -66,8 +67,8 @@ public class IoModule {
 
     @Singleton
     @Provides
-    DataSource providesLocalDataSource(JobDao jobDao) {
-        return new LocalDataSource(jobDao);
+    DataSource providesLocalDataSource(JobDao jobDao, SharedPreferences preferences) {
+        return new LocalDataSource(jobDao, preferences);
     }
 
     @Singleton

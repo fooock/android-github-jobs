@@ -1,5 +1,7 @@
 package com.fooock.github.jobs.data.local;
 
+import android.content.SharedPreferences;
+
 import com.fooock.github.jobs.data.DataSource;
 import com.fooock.github.jobs.data.entity.JobData;
 
@@ -16,10 +18,12 @@ import io.reactivex.Observable;
 public class LocalDataSource implements DataSource {
 
     private final JobDao mJobDao;
+    private final SharedPreferences mPreferences;
 
     @Inject
-    public LocalDataSource(JobDao jobDao) {
+    public LocalDataSource(JobDao jobDao, SharedPreferences preferences) {
         mJobDao = jobDao;
+        mPreferences = preferences;
     }
 
     @Override
