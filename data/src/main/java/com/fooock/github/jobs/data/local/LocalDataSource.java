@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import com.fooock.github.jobs.data.DataSource;
 import com.fooock.github.jobs.data.entity.JobData;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -16,6 +17,10 @@ import io.reactivex.Observable;
  *
  */
 public class LocalDataSource implements DataSource {
+
+    private static final int CACHE_TIME = 1000 * 10 * 60;
+
+    private static final String CACHE_TIME_TAG = "timestamp";
 
     private final JobDao mJobDao;
     private final SharedPreferences mPreferences;
@@ -31,6 +36,11 @@ public class LocalDataSource implements DataSource {
         return Observable.fromCallable(new Callable<List<JobData>>() {
             @Override
             public List<JobData> call() throws Exception {
+                // check cache
+                final long lastSave = mPreferences.getLong(CACHE_TIME_TAG, 0);
+                final long currentTime = System.currentTimeMillis();
+                if (currentTime - lastSave > CACHE_TIME) return Collections.emptyList();
+
                 return mJobDao.getJobs();
             }
         });
@@ -44,6 +54,9 @@ public class LocalDataSource implements DataSource {
     @Override
     public void save(List<JobData> jobs) {
         mJobDao.save(jobs);
+
+        // save timestamp to check data invalidation
+        mPreferences.edit().putLong(CACHE_TIME_TAG, System.currentTimeMillis()).apply();
     }
 
     @Override
