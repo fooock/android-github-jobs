@@ -40,7 +40,7 @@ case. For example, the *[debug](app/src/debug/java/com/fooock/github/jobs/Defaul
 tags, because normally, this logs can't be needed in release builds
 * `LeakCanary` library, to look for memory leaks, and fix it!
 * Database inspection using `Stetho`
-* Enable `StringMode` to detect all kind of problems
+* Enable `StrictMode` to detect all kind of problems
 
 Note that in *[release](app/src/release/java/com/fooock/github/jobs/DefaultApplication.java)* 
 mode, we only need to catch `WARNING`s and `ERROR`s, and send it to a crash reporting system.
