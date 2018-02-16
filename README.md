@@ -46,6 +46,13 @@ Note that in *[release](app/src/release/java/com/fooock/github/jobs/DefaultAppli
 mode, we only need to catch `WARNING`s and `ERROR`s, and send it to a crash reporting system.
 For this purpose I created the [`CrashLibrary`](app/src/release/java/com/fooock/github/jobs/CrashLibrary.java) class
 
+## Images
+
+<p align="left">
+    <img src="art/img1.png" width="200" />
+    <img src="art/img2.png" width="200" />
+</p>
+
 ## Tech stack
 This project uses the following libraries. You can view for each module what library is
 used in the [dependencies.gradle](buildsystem/dependencies.gradle) file.
