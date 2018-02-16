@@ -51,7 +51,9 @@ For this purpose I created the [`CrashLibrary`](app/src/release/java/com/fooock/
 <p align="left">
     <img src="art/img3.png" width="250" />
     <img src="art/img1.png" width="250" />
+    <img src="art/img4.png" width="250" />
     <img src="art/img2.png" width="250" />
+    <img src="art/img5.png" width="250" />
 </p>
 
 ## Tech stack
