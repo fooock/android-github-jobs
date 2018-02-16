@@ -49,6 +49,7 @@ For this purpose I created the [`CrashLibrary`](app/src/release/java/com/fooock/
 ## Images
 
 <p align="left">
+    <img src="art/img6.png" width="250" />
     <img src="art/img3.png" width="250" />
     <img src="art/img1.png" width="250" />
     <img src="art/img4.png" width="250" />
