@@ -9,12 +9,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Flowable;
+import io.reactivex.Observable;
 
 /**
  *
  */
-public class GetJobs extends FlowableUseCase<List<JobOffer>, Integer> {
+public class GetJobs extends ObservableUseCase<List<JobOffer>, Integer> {
 
     private final Repository mRepository;
 
@@ -25,7 +25,7 @@ public class GetJobs extends FlowableUseCase<List<JobOffer>, Integer> {
     }
 
     @Override
-    protected Flowable<List<JobOffer>> build(Integer params) {
+    protected Observable<List<JobOffer>> build(Integer params) {
         return mRepository.getJobs(params);
     }
 }
