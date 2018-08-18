@@ -49,15 +49,16 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
         mJobListener = listener;
     }
 
+    @NonNull
     @Override
-    public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.adapter_jobs, parent, false);
         return new Holder(view);
     }
 
     @Override
-    public void onBindViewHolder(Holder holder, int position) {
+    public void onBindViewHolder(@NonNull Holder holder, int position) {
         final JobViewModel viewModel = mJobs.get(position);
 
         if (mEnableAnimation) {
@@ -111,7 +112,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
     }
 
     @Override
-    public void onViewDetachedFromWindow(Holder holder) {
+    public void onViewDetachedFromWindow(@NonNull Holder holder) {
         super.onViewDetachedFromWindow(holder);
         holder.mLayout.clearAnimation();
     }
