@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
 
 /**
  *
@@ -33,16 +34,26 @@ public class DefaultRepository implements Repository {
 
     @Override
     public Observable<List<JobOffer>> getJobs(int page) {
-        return mJobsApiService.getJobs(page)
-                .doOnNext(new Consumer<List<JobData>>() {
-                    @Override
-                    public void accept(List<JobData> jobData) throws Exception {
-                        mLocalDataSource.save(jobData);
-                    }
-                })
+        return Observable.concat(
+                mLocalDataSource.getJobs(page)
+                        .filter(new Predicate<List<JobData>>() {
+                            @Override
+                            public boolean test(List<JobData> jobData) {
+                                return jobData.isEmpty();
+                            }
+                        }),
+                mJobsApiService.getJobs(page)
+                        .doOnNext(new Consumer<List<JobData>>() {
+                            @Override
+                            public void accept(List<JobData> jobData) {
+                                mLocalDataSource.save(jobData);
+                            }
+                        }))
+                .firstElement()
+                .toObservable()
                 .map(new Function<List<JobData>, List<JobOffer>>() {
                     @Override
-                    public List<JobOffer> apply(List<JobData> jobData) throws Exception {
+                    public List<JobOffer> apply(List<JobData> jobData) {
                         return mJobDataMapper.map(jobData);
                     }
                 });
@@ -53,7 +64,7 @@ public class DefaultRepository implements Repository {
         return mLocalDataSource.filterBy(query)
                 .map(new Function<List<JobData>, List<JobOffer>>() {
                     @Override
-                    public List<JobOffer> apply(List<JobData> jobData) throws Exception {
+                    public List<JobOffer> apply(List<JobData> jobData) {
                         return mJobDataMapper.map(jobData);
                     }
                 });

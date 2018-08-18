@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import com.fooock.github.jobs.GithubJobsApplication;
 import com.fooock.github.jobs.data.DataSource;
 import com.fooock.github.jobs.data.local.AppDatabase;
+import com.fooock.github.jobs.data.local.CachePolicy;
 import com.fooock.github.jobs.data.local.JobDao;
 import com.fooock.github.jobs.data.local.LocalDataSource;
 import com.fooock.github.jobs.data.remote.JobsApiService;
@@ -67,8 +68,8 @@ public class IoModule {
 
     @Singleton
     @Provides
-    DataSource providesLocalDataSource(JobDao jobDao, SharedPreferences preferences) {
-        return new LocalDataSource(jobDao, preferences);
+    DataSource providesLocalDataSource(JobDao jobDao, CachePolicy cachePolicy) {
+        return new LocalDataSource(jobDao, cachePolicy);
     }
 
     @Singleton
@@ -87,5 +88,11 @@ public class IoModule {
     @Provides
     JobDao providesJobDao(AppDatabase database) {
         return database.getJobDao();
+    }
+
+    @Singleton
+    @Provides
+    CachePolicy providesCachePolicy(SharedPreferences preferences) {
+        return new CachePolicy(preferences);
     }
 }

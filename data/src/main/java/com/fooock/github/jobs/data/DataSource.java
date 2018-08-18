@@ -16,4 +16,6 @@ public interface DataSource {
     void save(List<JobData> jobs);
 
     Observable<List<JobData>> filterBy(String query);
+
+    void deleteAll();
 }

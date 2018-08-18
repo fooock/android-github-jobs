@@ -63,6 +63,7 @@ ext {
     ]
 
     dataLibraries = [
+            timber           : "com.jakewharton.timber:timber:${timberVersion}",
             dagger           : "com.google.dagger:dagger:${daggerVersion}",
             rxJava           : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             retrofit         : "com.squareup.retrofit2:retrofit:${retrofitVersion}",

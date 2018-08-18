@@ -24,4 +24,7 @@ public interface JobDao {
 
     @Query("SELECT * FROM jobs WHERE title LIKE :query OR location LIKE :query OR company LIKE :query")
     List<JobData> filterBy(String query);
+
+    @Query("DELETE FROM jobs")
+    void removeAll();
 }

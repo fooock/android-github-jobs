@@ -1,71 +1,62 @@
 package com.fooock.github.jobs.data.local;
 
-import android.content.SharedPreferences;
-
 import com.fooock.github.jobs.data.DataSource;
 import com.fooock.github.jobs.data.entity.JobData;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import timber.log.Timber;
 
 /**
  *
  */
 public class LocalDataSource implements DataSource {
 
-    private static final int CACHE_TIME = 1000 * 10 * 60;
-
-    private static final String CACHE_TIME_TAG = "timestamp";
-
     private final JobDao mJobDao;
-    private final SharedPreferences mPreferences;
+    private final CachePolicy mCachePolicy;
 
     @Inject
-    public LocalDataSource(JobDao jobDao, SharedPreferences preferences) {
+    public LocalDataSource(JobDao jobDao, CachePolicy policy) {
         mJobDao = jobDao;
-        mPreferences = preferences;
+        mCachePolicy = policy;
     }
 
     @Override
     public Observable<List<JobData>> getJobs(final int page) {
         return Observable.fromCallable(new Callable<List<JobData>>() {
             @Override
-            public List<JobData> call() throws Exception {
-                // check cache
-                final long lastSave = mPreferences.getLong(CACHE_TIME_TAG, 0);
-                final long currentTime = System.currentTimeMillis();
-                if (currentTime - lastSave > CACHE_TIME) return Collections.emptyList();
-
+            public List<JobData> call() {
+                if (mCachePolicy.hasExpired()) deleteAll();
                 return mJobDao.getJobs();
             }
         });
     }
 
-    private int calculateOffset(int page) {
-        if (page == 0) return 0;
-        return (page + 1) * 50;
-    }
-
     @Override
     public void save(List<JobData> jobs) {
+        Timber.d("Save %s entities into database", jobs.size());
         mJobDao.save(jobs);
-
-        // save timestamp to check data invalidation
-        mPreferences.edit().putLong(CACHE_TIME_TAG, System.currentTimeMillis()).apply();
+        mCachePolicy.updateExpiration();
     }
 
     @Override
     public Observable<List<JobData>> filterBy(final String query) {
         return Observable.fromCallable(new Callable<List<JobData>>() {
             @Override
-            public List<JobData> call() throws Exception {
+            public List<JobData> call() {
                 return mJobDao.filterBy(query);
             }
         });
+    }
+
+    @Override
+    public void deleteAll() {
+        Timber.d("Delete all entities from database");
+        mJobDao.removeAll();
+        mCachePolicy.clean();
     }
 }

@@ -32,6 +32,7 @@ dependencies {
     implementation rootProject.ext.dataLibraries.retrofitConverter
     implementation rootProject.ext.dataLibraries.room
     annotationProcessor rootProject.ext.dataLibraries.roomCompiler
+    implementation rootProject.ext.dataLibraries.timber
 
     testImplementation rootProject.ext.dataTest.junit
     testImplementation rootProject.ext.dataTest.mockito
