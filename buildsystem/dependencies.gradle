@@ -4,7 +4,7 @@ ext {
     timberVersion = "4.6.0"
     butterknifeVersion = "8.8.1"
     leakCanaryVersion = "1.5.1"
-    ossLicensesVersion = "11.6.0"
+    ossLicensesVersion = "16.0.0"
     stethoVersion = "1.5.0"
     retrofitVersion = "2.3.0"
     okhttp3Version = "3.9.1"

@@ -13,8 +13,8 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:configChanges="orientation|screenSize"
             android:name=".activity.GithubJobsActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
 
@@ -29,6 +29,14 @@
                 android:resource="@xml/searchable" />
 
         </activity>
+
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
+            android:theme="@style/OssActivityTheme" />
+
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
+            android:theme="@style/OssActivityTheme" />
 
     </application>
 

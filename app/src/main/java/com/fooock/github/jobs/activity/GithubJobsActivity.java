@@ -1,5 +1,6 @@
 package com.fooock.github.jobs.activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.fooock.github.jobs.GithubJobsApplication;
 import com.fooock.github.jobs.Navigation;
 import com.fooock.github.jobs.R;
 import com.fooock.github.jobs.di.AppComponent;
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 
 import javax.inject.Inject;
 
@@ -77,6 +79,13 @@ public class GithubJobsActivity extends AppCompatActivity implements
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Timber.d("Selected: %s", item.getTitle());
         mDrawerLayout.closeDrawers();
+        int itemId = item.getItemId();
+        switch (itemId) {
+            case R.id.menu_notices:
+                Intent intent = new Intent(this, OssLicensesMenuActivity.class);
+                startActivity(intent);
+                break;
+        }
         return true;
     }
 
