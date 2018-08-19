@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import com.fooock.github.jobs.Navigation;
 import com.fooock.github.jobs.R;
 import com.fooock.github.jobs.activity.GithubJobsActivity;
 import com.fooock.github.jobs.adapter.JobsAdapter;
@@ -52,6 +53,7 @@ public class JobsFragment extends Fragment implements JobsView,
     @BindView(R.id.empty_results) LinearLayout mEmptyResultLayout;
 
     @Inject JobsPresenter mJobsPresenter;
+    @Inject Navigation mNavigation;
 
     private final Handler mDelayedHandler = new Handler();
     private final EndlessScrollListener mEndlessScrollListener = new EndlessScrollListener() {
@@ -149,8 +151,9 @@ public class JobsFragment extends Fragment implements JobsView,
     }
 
     @Override
-    public void onSelectedJob(String jobId) {
+    public void onSelectedJob(String jobId, String title) {
         Timber.d("Get detail for %s", jobId);
+        mNavigation.showJobDetailFragment(getFragmentManager(), jobId, title);
     }
 
     @Override

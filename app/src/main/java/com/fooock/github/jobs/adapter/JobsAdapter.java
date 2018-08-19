@@ -81,7 +81,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mJobListener.onSelectedJob(viewModel.getId());
+                mJobListener.onSelectedJob(viewModel.getId(), viewModel.getTitle());
             }
         });
     }
@@ -160,18 +160,12 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
      */
     static class Holder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.job_base_layout)
-        LinearLayout mLayout;
-        @BindView(R.id.txt_job_title)
-        TextView mTxtJobTitle;
-        @BindView(R.id.txt_job_type)
-        TextView mTxtJobType;
-        @BindView(R.id.txt_created_at)
-        TextView mTxtCreated;
-        @BindView(R.id.txt_company_name)
-        TextView mTxtCompanyName;
-        @BindView(R.id.txt_location)
-        TextView mTxtLocation;
+        @BindView(R.id.job_base_layout) LinearLayout mLayout;
+        @BindView(R.id.txt_job_title) TextView mTxtJobTitle;
+        @BindView(R.id.txt_job_type) TextView mTxtJobType;
+        @BindView(R.id.txt_created_at) TextView mTxtCreated;
+        @BindView(R.id.txt_company_name) TextView mTxtCompanyName;
+        @BindView(R.id.txt_location) TextView mTxtLocation;
 
         Holder(View itemView) {
             super(itemView);
@@ -180,6 +174,6 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
     }
 
     public interface SelectedJobListener {
-        void onSelectedJob(String jobId);
+        void onSelectedJob(String jobId, String title);
     }
 }
