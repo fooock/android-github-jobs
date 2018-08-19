@@ -69,4 +69,15 @@ public class DefaultRepository implements Repository {
                     }
                 });
     }
+
+    @Override
+    public Observable<JobOffer> getJobDetail(String jobId) {
+        return mLocalDataSource.getJobDetail(jobId)
+                .map(new Function<JobData, JobOffer>() {
+                    @Override
+                    public JobOffer apply(JobData jobData) {
+                        return mJobDataMapper.map(jobData);
+                    }
+                });
+    }
 }

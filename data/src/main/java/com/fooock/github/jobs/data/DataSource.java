@@ -18,4 +18,6 @@ public interface DataSource {
     Observable<List<JobData>> filterBy(String query);
 
     void deleteAll();
+
+    Observable<JobData> getJobDetail(String jobId);
 }

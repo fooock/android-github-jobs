@@ -13,21 +13,28 @@ import java.util.List;
 /**
  *
  */
-public class JobOfferMapper implements Mapper<List<JobOffer>, List<JobViewModel>> {
+public class JobOfferMapper implements Mapper<JobOffer, JobViewModel> {
+
+    @Override
+    public JobViewModel map(JobOffer offer) {
+        Date to = new Date(System.currentTimeMillis());
+
+        CompanyViewModel company = new CompanyViewModel(
+                offer.getCompany().getName().trim(), offer.getCompany().getUrl(), offer.getCompany().getLogoUrl());
+
+        String date = DateUtil.elapsedTime(offer.getCreatedAt(), to);
+
+        return new JobViewModel(offer.getId(), offer.getTitle().trim(), offer.getLocation().trim(),
+                offer.getType().trim(), company, date, offer.getCreatedAt());
+
+
+    }
 
     @Override
     public List<JobViewModel> map(List<JobOffer> from) {
         ArrayList<JobViewModel> jobs = new ArrayList<>(from.size());
-        Date to = new Date(System.currentTimeMillis());
         for (JobOffer offer : from) {
-
-            CompanyViewModel company = new CompanyViewModel(
-                    offer.getCompany().getName().trim(), offer.getCompany().getUrl(), offer.getCompany().getLogoUrl());
-
-            String date = DateUtil.elapsedTime(offer.getCreatedAt(), to);
-
-            jobs.add(new JobViewModel(offer.getId(), offer.getTitle().trim(), offer.getLocation().trim(),
-                    offer.getType().trim(), company, date, offer.getCreatedAt()));
+            jobs.add(map(offer));
         }
         return jobs;
     }

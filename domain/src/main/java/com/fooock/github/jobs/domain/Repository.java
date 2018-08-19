@@ -14,4 +14,6 @@ public interface Repository {
     Observable<List<JobOffer>> getJobs(int page);
 
     Observable<List<JobOffer>> filterBy(String query);
+
+    Observable<JobOffer> getJobDetail(String jobId);
 }

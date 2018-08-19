@@ -26,4 +26,7 @@ public interface JobDao {
 
     @Query("DELETE FROM jobs")
     void removeAll();
+
+    @Query("SELECT * FROM jobs WHERE id = :jobId")
+    JobData getJobForId(String jobId);
 }

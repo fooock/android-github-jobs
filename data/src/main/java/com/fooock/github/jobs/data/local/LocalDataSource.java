@@ -64,4 +64,14 @@ public class LocalDataSource implements DataSource {
         mJobDao.removeAll();
         mCachePolicy.clean();
     }
+
+    @Override
+    public Observable<JobData> getJobDetail(final String jobId) {
+        return Observable.fromCallable(new Callable<JobData>() {
+            @Override
+            public JobData call() {
+                return mJobDao.getJobForId(jobId);
+            }
+        });
+    }
 }
