@@ -1,6 +1,5 @@
 package com.fooock.github.jobs.fragment;
 
-import android.app.Fragment;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
@@ -21,10 +20,8 @@ import android.widget.ProgressBar;
 
 import com.fooock.github.jobs.Navigation;
 import com.fooock.github.jobs.R;
-import com.fooock.github.jobs.activity.GithubJobsActivity;
 import com.fooock.github.jobs.adapter.JobsAdapter;
 import com.fooock.github.jobs.adapter.listener.EndlessScrollListener;
-import com.fooock.github.jobs.di.AppComponent;
 import com.fooock.github.jobs.model.JobViewModel;
 import com.fooock.github.jobs.presenter.JobsPresenter;
 import com.fooock.github.jobs.presenter.view.JobsView;
@@ -41,7 +38,7 @@ import timber.log.Timber;
 /**
  *
  */
-public class JobsFragment extends Fragment implements JobsView,
+public class JobsFragment extends BaseFragment implements JobsView,
         SwipeRefreshLayout.OnRefreshListener, JobsAdapter.SelectedJobListener, SearchView.OnQueryTextListener {
 
     private static final String TAG_JOBS_LIST = "github.jobs";
@@ -97,10 +94,6 @@ public class JobsFragment extends Fragment implements JobsView,
         mDelayedHandler.removeCallbacksAndMessages(null);
         mJobsPresenter.detach();
         super.onDestroyView();
-    }
-
-    private AppComponent component() {
-        return ((GithubJobsActivity) getActivity()).component();
     }
 
     @Override

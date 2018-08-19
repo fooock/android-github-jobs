@@ -1,6 +1,5 @@
 package com.fooock.github.jobs.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fooock.github.jobs.R;
-import com.fooock.github.jobs.activity.GithubJobsActivity;
-import com.fooock.github.jobs.di.AppComponent;
 
 import butterknife.ButterKnife;
 import timber.log.Timber;
@@ -17,7 +14,7 @@ import timber.log.Timber;
 /**
  *
  */
-public class JobDetailFragment extends Fragment {
+public class JobDetailFragment extends BaseFragment {
     public static final String KEY_JOB_NAME = "jobName";
     public static final String KEY_JOB_ID = "jobId";
 
@@ -44,13 +41,5 @@ public class JobDetailFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         Timber.d("Get job %s", mJobId);
         getActivity().setTitle(mJobName);
-    }
-
-    private AppComponent component() {
-        return getBaseActivity().component();
-    }
-
-    private GithubJobsActivity getBaseActivity() {
-        return (GithubJobsActivity) getActivity();
     }
 }
