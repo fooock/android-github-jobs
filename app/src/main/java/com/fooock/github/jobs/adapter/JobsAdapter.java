@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.fooock.github.jobs.R;
 import com.fooock.github.jobs.model.JobViewModel;
+import com.fooock.github.jobs.util.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -98,7 +99,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
             Spannable spanText = Spannable.Factory.getInstance().newSpannable(original);
             spanText.setSpan(new UnderlineSpan(), startPos, endPos, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             spanText.setSpan(new StyleSpan(Typeface.BOLD), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            spanText.setSpan(new ForegroundColorSpan(mContext.getColor(R.color.textColor)),
+            spanText.setSpan(new ForegroundColorSpan(Utils.getColor(mContext, R.color.textColor)),
                     startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             view.setText(spanText, TextView.BufferType.SPANNABLE);
         } else {
@@ -159,12 +160,18 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.Holder> {
      */
     static class Holder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.job_base_layout) LinearLayout mLayout;
-        @BindView(R.id.txt_job_title) TextView mTxtJobTitle;
-        @BindView(R.id.txt_job_type) TextView mTxtJobType;
-        @BindView(R.id.txt_created_at) TextView mTxtCreated;
-        @BindView(R.id.txt_company_name) TextView mTxtCompanyName;
-        @BindView(R.id.txt_location) TextView mTxtLocation;
+        @BindView(R.id.job_base_layout)
+        LinearLayout mLayout;
+        @BindView(R.id.txt_job_title)
+        TextView mTxtJobTitle;
+        @BindView(R.id.txt_job_type)
+        TextView mTxtJobType;
+        @BindView(R.id.txt_created_at)
+        TextView mTxtCreated;
+        @BindView(R.id.txt_company_name)
+        TextView mTxtCompanyName;
+        @BindView(R.id.txt_location)
+        TextView mTxtLocation;
 
         Holder(View itemView) {
             super(itemView);
