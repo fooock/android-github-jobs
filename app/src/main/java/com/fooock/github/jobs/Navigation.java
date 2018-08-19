@@ -29,8 +29,8 @@ public class Navigation {
             JobDetailFragment jobDetailFragment = new JobDetailFragment();
 
             Bundle bundle = new Bundle();
-            bundle.putString("id", id);
-            bundle.putString("jobName", jobName);
+            bundle.putString(JobDetailFragment.KEY_JOB_ID, id);
+            bundle.putString(JobDetailFragment.KEY_JOB_NAME, jobName);
             jobDetailFragment.setArguments(bundle);
 
             manager.beginTransaction()

@@ -8,20 +8,28 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fooock.github.jobs.R;
+import com.fooock.github.jobs.activity.GithubJobsActivity;
+import com.fooock.github.jobs.di.AppComponent;
 
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 /**
  *
  */
 public class JobDetailFragment extends Fragment {
+    public static final String KEY_JOB_NAME = "jobName";
+    public static final String KEY_JOB_ID = "jobId";
 
     private String mJobName;
+    private String mJobId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mJobName = getArguments().getString("jobName");
+        component().inject(this);
+        mJobName = getArguments().getString(KEY_JOB_NAME);
+        mJobId = getArguments().getString(KEY_JOB_ID);
     }
 
     @Nullable
@@ -34,6 +42,15 @@ public class JobDetailFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Timber.d("Get job %s", mJobId);
         getActivity().setTitle(mJobName);
+    }
+
+    private AppComponent component() {
+        return getBaseActivity().component();
+    }
+
+    private GithubJobsActivity getBaseActivity() {
+        return (GithubJobsActivity) getActivity();
     }
 }
