@@ -15,9 +15,8 @@ import java.util.List;
 @Dao
 public interface JobDao {
 
-    //@Query("SELECT * FROM jobs ORDER BY created_at ASC LIMIT 50 OFFSET :offset")
-    @Query("SELECT * FROM jobs")
-    List<JobData> getJobs();
+    @Query("SELECT * FROM jobs ORDER BY created_at ASC LIMIT 50 OFFSET :offset")
+    List<JobData> getJobs(int offset);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void save(List<JobData> jobs);

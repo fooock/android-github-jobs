@@ -39,7 +39,7 @@ public class DefaultRepository implements Repository {
                         .filter(new Predicate<List<JobData>>() {
                             @Override
                             public boolean test(List<JobData> jobData) {
-                                return jobData.isEmpty();
+                                return jobData.size() > 0;
                             }
                         }),
                 mJobsApiService.getJobs(page)

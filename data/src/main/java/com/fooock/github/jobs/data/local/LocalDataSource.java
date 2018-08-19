@@ -31,9 +31,14 @@ public class LocalDataSource implements DataSource {
             @Override
             public List<JobData> call() {
                 if (mCachePolicy.hasExpired()) deleteAll();
-                return mJobDao.getJobs();
+                return mJobDao.getJobs(calculateOffset(page));
             }
         });
+    }
+
+    private int calculateOffset(int page) {
+        if (page == 0) return 0;
+        return (page + 1) * 50;
     }
 
     @Override
