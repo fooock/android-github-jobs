@@ -21,17 +21,20 @@ public class JobDetailPresenter extends Presenter<JobDetailView> {
         mGetJobDetail = getJobDetail;
     }
 
-    public void loadJobDetail(String jobId) {
+    public void loadJobDetail(final String jobId) {
         Timber.d("Load job detail for %s", jobId);
         mGetJobDetail.execute(new ObserverAdapter<JobOffer>() {
             @Override
             public void onNext(JobOffer jobOffer) {
-
+                if (isAttached()) {
+                    getView().onShowLoading(false);
+                    getView().onShowJobDetail(jobOffer.getDescription());
+                }
             }
 
             @Override
             public void onError(Throwable e) {
-
+                if (isAttached()) getView().onShowLoading(false);
             }
         }, jobId);
     }
