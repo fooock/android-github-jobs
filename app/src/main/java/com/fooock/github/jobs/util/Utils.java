@@ -20,4 +20,8 @@ public class Utils {
             return context.getColor(color);
         }
     }
+
+    public static String intColorToString(Context context, @ColorRes int color) {
+        return String.format("#%06X", 0xFFFFFF & getColor(context, color));
+    }
 }

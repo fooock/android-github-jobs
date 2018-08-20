@@ -28,13 +28,10 @@ public class JobDetailFragment extends BaseFragment implements JobDetailView {
     private String mJobName;
     private String mJobId;
 
-    @BindView(R.id.wv_jod_desc)
-    WebView mJobDescription;
-    @BindView(R.id.pb_loader)
-    ProgressBar mProgress;
+    @BindView(R.id.wv_jod_desc) WebView mJobDescription;
+    @BindView(R.id.pb_loader) ProgressBar mProgress;
 
-    @Inject
-    JobDetailPresenter mJobDetailPresenter;
+    @Inject JobDetailPresenter mJobDetailPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,13 +76,13 @@ public class JobDetailFragment extends BaseFragment implements JobDetailView {
     @Override
     public void onShowJobDetail(String description) {
         mJobDescription.setVisibility(View.VISIBLE);
-        mJobDescription.loadData(applyStyle(description), "text/html", "uft-8");
+        mJobDescription.loadDataWithBaseURL("file:///android_asset/", applyStyle(description), "text/html", "uft-8", null);
     }
 
     private String applyStyle(String desc) {
         StringBuilder builder = new StringBuilder();
         builder.append("<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\" integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\">");
-        builder.append("<style>p {text-align: justify;} </style>");
+        builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"/>");
         builder.append(desc);
         return builder.toString();
     }
